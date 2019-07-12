@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import ReactDOM from 'react-dom'
 
-class Profile extends React.Component {
+class StaticProfile extends React.Component {
 
   render () {
 
@@ -23,4 +23,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile
+export default StaticProfile
