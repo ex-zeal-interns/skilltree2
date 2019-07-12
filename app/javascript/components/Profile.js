@@ -5,8 +5,11 @@ import ReactDOM from 'react-dom'
 class Profile extends React.Component {
 
   render () {
+
+    // coming from fetch of current_user_profile
     const {email, firstname, lastname, timezone, url} = this.props.profile
 
+    // local host will change on deployment
     const my_url = `http://localhost:3000/profile/${url}`
 
     return (

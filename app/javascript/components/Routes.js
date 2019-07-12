@@ -14,6 +14,8 @@ class Routes extends React.Component {
 
   render () {
       const {current_user_profile} = this.props
+
+      // builds custom url
       const profUrl = `/profile/${current_user_profile.url}`
 
     return (
