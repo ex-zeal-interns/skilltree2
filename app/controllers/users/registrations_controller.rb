@@ -4,45 +4,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  # GET /resource/sign_up
-  def new
-    super
-  end
-
-  # Create logic for unique url
-  def url_set()
-    @randomstring = SecureRandom.hex(5)
-    if User.where("unique_url = ?", @randomstring).blank?
-      params[:user][:unique_url] = @randomstring
-    else
-      url_set()
-    end
-  end
-
   # POST /resource
   def create
-    @firstname = params[:user][:first_name]
-    @firstname.capitalize!
-    @lastname = params[:user][:last_name]
-    @lastname.capitalize!
+    params[:user][:first_name].capitalize!
+    params[:user][:last_name].capitalize!
     url_set()
     super do |resource|
     end
-  end
-
-  # GET /resource/edit
-  def edit
-    super
-  end
-
-  # PUT /resource
-  def update
-    super
-  end
-
-  # DELETE /resource
-  def destroy
-    super
   end
 
   # GET /resource/cancel
@@ -74,5 +42,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
     super(resource)
+  end
+end
+
+private
+
+# Create logic for unique url
+def url_set()
+  @randomstring = SecureRandom.hex(5)
+  if User.where("unique_url = ?", @randomstring).blank?
+    params[:user][:unique_url] = @randomstring
+  else
+    url_set()
   end
 end
