@@ -1,30 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "should not sign up with existing email" do
-    user = User.new(email: "test@email.com", first_name: "Bob", last_name: "Smith", time_zone: "PT")
-    user.save
-    user2 = User.new(email: "test@email.com", first_name: "Sally", last_name: "Jones", time_zone: "ET")
-    expect(user2).to_not be_valid
+  describe 'user' do
+    let(:user) { FactoryBot.build(:user) }
+    context 'when all required user information is entered' do
+      it 'user' do
+        expect(user).to be_valid
+      end
+    end
   end
 
-  it "should not sign up with missing email" do
-    user = User.new(first_name: "Bob", last_name: "Smith", time_zone: "PT")
-    expect(user).to_not be_valid
+  context 'should not allow a new user to be created with an existing email' do
+    let!(:user) {FactoryBot.create(:user, email: "testemail@address.com")}
+    let(:user2) {FactoryBot.build(:user, email: "testemail@address.com")}
+      it 'user' do
+        expect(user2).to_not be_valid
+      end
   end
 
-  it "should not sign up with missing first name" do
-    user = User.new(email: "test@email.com", last_name: "Smith", time_zone: "PT")
-    expect(user).to_not be_valid
+  context 'when required user information is missing' do
+    let(:user) {FactoryBot.build(:user, email: nil, password: nil, first_name: nil, last_name: nil, time_zone: nil )}
+      it 'cannot create a user without email, password, first name, last name, and time zone' do
+        expect(user).to_not be_valid
+      end
+    end
   end
-
-  it "should not sign up with missing last name" do
-    user = User.new(email: "test@email.com", first_name: "Bob", time_zone: "PT")
-    expect(user).to_not be_valid
-  end
-
-  it "should not sign up with missing time zone" do
-    user = User.new(email: "test@email.com", first_name: "Bob", last_name: "Smith")
-    expect(user).to_not be_valid
-  end
-end
