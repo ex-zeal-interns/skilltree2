@@ -1,0 +1,35 @@
+<div class = "loginContainer">
+  <div class = "padding1"></div>
+  <div class = "zealLogo">
+    <%=image_tag("ZEAL-logo-final.png")%>
+  </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class = "form">
+      <div class="field" id = "email">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter Email..." %>
+      </div>
+
+      <div class="field" id = "password">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "∙∙∙∙∙∙∙"%>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field" id = "rememberMe">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions" id = "logButton">
+        <%= f.submit "LOGIN" %>
+      </div>
+    <% end %>
+    <div id = "links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+  <div class = "padding2"></div>
+</div>

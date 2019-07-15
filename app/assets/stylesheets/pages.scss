@@ -1,3 +1,308 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+////////////// devise login page /////////////////
+
+.loginContainer{
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: 180px 250px;
+  grid-template-areas:
+  "padding1 zealLogo padding2 "
+  "padding1 form padding2"
+}
+  .zealLogo{
+    grid-area: zealLogo;
+    text-align:center;
+  }
+    .zealLogo img{
+      height: 130px;
+      width: 200px;
+      display: inline-block;
+    }
+  .loginContainer .form{
+    grid-area: form;
+    background-color: #fafafa;
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom: #ffb648 solid 8px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 80px 80px 60px auto;
+    grid-template-areas:
+    "email email"
+    "password password"
+    "rememberMe rememberMe"
+    "logButton links"
+  }
+    .form #email{
+      grid-area: email;
+      margin-left: 30px;
+      margin-top: 15px;
+    }
+      .form #email label {
+        font-weight: bold;
+      }
+      .form #email input{
+        width: 90%;
+        height: 40px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        border: none;
+        background-color: #f0f0f0;
+        padding-left: 10px;
+        border-bottom: grey solid 1.5px;
+      }
+    .form #password{
+      grid-area: password;
+      margin-left: 30px;
+      padding-top: 20px;
+    }
+     .form #password label {
+        font-weight: bold;
+      }
+    .form #password input{
+        width: 90%;
+        height: 40px;
+        border: none;
+        background-color: #f0f0f0;
+        padding-left: 10px;
+        border-bottom: grey solid 1.5px;
+      }
+    .form #rememberMe{
+      grid-area: rememberMe;
+      margin-left: 30px;
+      margin-top: 25px;
+    }
+      .form #rememberMe label {
+        font-weight: bold;
+      }
+    .form #logButton{
+      grid-area: logButton;
+      margin-bottom: 40px;
+
+    }
+      .form #logButton input{
+        width: 60%;
+        height: 40px;
+        margin-top: 5%;
+        margin-left: 30px;
+        background: #ffb648;
+        border: #ffb648;
+        font-size: 18px;
+        border-radius: 80px 80px 80px 80px;
+        color: white;
+        -webkit-transition: border-color 300ms ease, background-color 300ms ease;
+        transition: border-color 300ms ease, background-color 300ms ease;
+      }
+      .form #logButton input:hover {
+        border-color: hsla(36.18556701030928, 80.17%, 52.55%, 1.00);
+        background-color: hsla(36.0655737704918, 80.30%, 52.62%, 1.00);
+        background-image: none;
+      }
+
+    .form #links{
+      grid-area: links;
+      text-align:right;
+      margin-right: 50px;
+    }
+      .form #links a {
+          font-weight: bold;
+          color: #333;
+      }
+
+  .padding1{
+    grid-area: padding1;
+  }
+  .padding2{
+    grid-area: padding2;
+  }
+
+
+////////////devise sign up page and edit page////////////////
+
+.deviseContainer{
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 180px 250px;
+  grid-template-areas:
+  "padding1 zealLogo padding2 "
+  "padding1 form padding2"
+}
+
+.signupContainer{
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 180px 250px;
+  grid-template-areas:
+  "padding1 zealLogo padding2 "
+  "padding1 form padding2"
+}
+
+  .deviseContainer .form{
+    grid-area: form;
+    background-color: #fafafa;
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom: #ffb648 solid 8px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 80px 80px 90px 90px 80px;
+    grid-template-areas:
+    "email timezone"
+    "first last"
+    "newPassword passConf"
+    "checkBoxs checkBoxs"
+    "currentPassword logButton"
+    "currentPassword links"
+  }
+  .signupContainer .form{
+    grid-area: form;
+    background-color: #fafafa;
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom: #ffb648 solid 8px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 80px 80px 90px 90px 80px;
+    grid-template-areas:
+    "email timezone"
+    "first last"
+    "newPassword passConf"
+    "checkBoxs logButton"
+    "checkBoxs links"
+  }
+      .form #email2{
+        grid-area: email;
+      }
+        .form #email2 label {
+          font-weight: bold;
+        }
+        .form #email2 input{
+          width: 80%;
+          height: 20px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          border: none;
+          background-color: #f0f0f0;
+          padding-left: 10px;
+          border-bottom: grey solid 1.5px;
+        }
+      .form #timeZone{
+        grid-area: timezone;
+      }
+      .form #timeZone label {
+        font-weight: bold;
+      }
+      .form #timeZone select{
+        width: 90%;
+        height: 30px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        border: none;
+        background-color: #f0f0f0;
+        padding-left: 10px;
+        border-bottom: grey solid 1.5px;
+      }
+      .form #firsName{
+        grid-area: first;
+      }
+        .form #firstName label {
+          font-weight: bold;
+        }
+        .form #firstName input{
+          width: 90%;
+          height: 20px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          border: none;
+          background-color: #f0f0f0;
+          padding-left: 10px;
+          border-bottom: grey solid 1.5px;
+        }
+      .form #lastName{
+        grid-area: last;
+      }
+        .form #lastName label {
+          font-weight: bold;
+        }
+        .form #lastName input{
+          width: 90%;
+          height: 20px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          border: none;
+          background-color: #f0f0f0;
+          padding-left: 10px;
+          border-bottom: grey solid 1.5px;
+        }
+      .form #checkBoxs{
+        grid-area:checkBoxs;
+      }
+        .form #checkBoxs label {
+          font-weight: bold;
+        }
+        .form #checkBoxs input{
+          width: 90%;
+          height: 20px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          border: none;
+          background-color: #f0f0f0;
+          padding-left: 10px;
+          border-bottom: grey solid 1.5px;
+        }
+      .form #newPassword{
+        grid-area:newPassword;
+      }
+        .form #newPassword label {
+          font-weight: bold;
+        }
+        .form #newPassword input{
+          width: 90%;
+          height: 20px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          border: none;
+          background-color: #f0f0f0;
+          padding-left: 10px;
+          border-bottom: grey solid 1.5px;
+        }
+      .form #passConf{
+        grid-area: passConf;
+      }
+        .form #passConf label {
+          font-weight: bold;
+        }
+        .form #passConf input{
+          width: 90%;
+          height: 20px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          border: none;
+          background-color: #f0f0f0;
+          padding-left: 10px;
+          border-bottom: grey solid 1.5px;
+        }
+      .form #currentPassword{
+        grid-area: currentPassword;
+      }
+        .form #currentPassword label {
+          font-weight: bold;
+        }
+        .form #currentPassword input{
+          width: 90%;
+          height: 20px;
+          margin-bottom: 5px;
+          margin-top: 5px;
+          border: none;
+          background-color: #f0f0f0;
+          padding-left: 10px;
+          border-bottom: grey solid 1.5px;
+        }
