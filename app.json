@@ -1,0 +1,12 @@
+{
+  "name": "skill-tree",
+  "scripts": {},
+  "env": {
+  },
+  "formation": {},
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [],
+  "stack": "heroku-18"
+}
