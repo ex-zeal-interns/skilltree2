@@ -5,6 +5,7 @@
     "@babel/preset-react": "^7.0.0",
     "@rails/webpacker": "^4.0.7",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "eslint": "^6.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -15,6 +16,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.8.0",
+    "prettier": "1.18.2",
     "react-test-renderer": "^16.8.6",
     "webpack-dev-server": "^3.7.2"
   }

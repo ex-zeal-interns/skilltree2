@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Routes> should have a Router 1`] = `ShallowWrapper {}`;

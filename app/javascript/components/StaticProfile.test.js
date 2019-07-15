@@ -15,7 +15,7 @@ describe('<StaticProfile>', () => {
     timezone: 'UTC',
     url: 'iou22o38f4',
   }
-  const wrapper = mount(<StaticProfile profile = {profile}/>)
+  const wrapper = shallow(<StaticProfile profile = {profile}/>)
 
   it('displays user fullname', () => {
     expect(wrapper.find('#fullname').length).toEqual(1)
