@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     params[:user][:first_name].capitalize!
     params[:user][:last_name].capitalize!
-    url_set()
+    url_set
     super do |resource|
     end
   end
