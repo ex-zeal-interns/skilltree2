@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StaticProfile from './StaticProfile';
+import Profile from './Profile';
 import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -15,7 +15,7 @@ describe('<StaticProfile>', () => {
     timezone: 'UTC',
     url: 'iou22o38f4',
   }
-  const wrapper = shallow(<StaticProfile profile = {profile}/>)
+  const wrapper = shallow(<Profile profile = {profile}/>)
   it('renders corretly', () => {
     expect(wrapper).toMatchSnapshot()
   })
@@ -27,5 +27,8 @@ describe('<StaticProfile>', () => {
   })
   it('displays user timezone', () => {
     expect(wrapper.find('#timezone').length).toEqual(1)
+  })
+  it('displays a unique url', () => {
+    expect(wrapper.find('#url').length).toEqual(1)
   })
 })
