@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Enzyme, { mount, shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import App from './App'
 import Routes from './Routes'
 
