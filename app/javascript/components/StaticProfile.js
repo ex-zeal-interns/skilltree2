@@ -3,14 +3,15 @@ import PropTypes from "prop-types"
 import ReactDOM from 'react-dom'
 
 class StaticProfile extends React.Component {
-
   render () {
 
-    // coming from fetch of profile (find where(url = {url}))
-    const {email, firstname, lastname, timezone, url} = this.props.profile
-    const BASE_URL = process.env.REACT_APP_BASE_URL
+    // coming from fetch of profile (find where(url = {url}))    
+    const host = window.location.origin
+
     // local host will change on deployment
-    const my_url = `${BASE_URL}/profile/${url}`
+    const my_url = `${host}/profile/${url}`
+
+    const {email, firstname, lastname, timezone, url} = this.props.profile
 
     return (
       <div id="staticprofile">
