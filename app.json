@@ -3,7 +3,7 @@
   "scripts": {},
   "env": {},
   "formation": {},
-  "addons": [],
+  "addons": ["heroku-postgresql"],
   "buildpacks": [],
   "stack": "heroku-18"
 }
