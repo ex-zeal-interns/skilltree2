@@ -26,17 +26,14 @@ class Routes extends React.Component {
       const profUrl = `/profile/${profile.url}`
 
     return (
-
-        <Router>
-          <Route path="/profile" exact render={(props) => <Profile{...props}
-            profile={profile}
-          />} />
-          <Route path={profUrl} exact render={(props) => <StaticProfile{...props}
-            profile={profile}
-          />} />
-        </Router>
-
-
+      <Router>
+        <Route path="/profile" exact render={(props) => <Profile{...props}
+          profile={profile}
+        />} />
+        <Route path={profUrl} exact render={(props) => <StaticProfile{...props}
+          profile={profile}
+        />} />
+      </Router>
     );
   }
 }
