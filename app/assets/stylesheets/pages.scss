@@ -2,7 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+////////devise alert and notice //////////////////
 
+.notice{
+  color: green;
+  font-weight: bold;
+}
+.alert{
+  color: red;
+  font-weight: bold;
+}
 
 ////////////// devise login page /////////////////
 
@@ -44,6 +53,11 @@
       margin-left: 30px;
       margin-top: 15px;
     }
+    .form #bademail{
+      grid-area: email;
+      margin-left: 30px;
+      margin-top: 15px;
+    }
       .form #email label {
         font-weight: bold;
       }
@@ -57,7 +71,22 @@
         padding-left: 10px;
         border-bottom: grey solid 1.5px;
       }
+      .form #bademail input {
+        width: 90%;
+        height: 40px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        border: none;
+        background-color: MistyRose;
+        padding-left: 10px;
+        border-bottom: red solid 1.5px;
+      }
     .form #password{
+      grid-area: password;
+      margin-left: 30px;
+      padding-top: 20px;
+    }
+    .form #badpassword{
       grid-area: password;
       margin-left: 30px;
       padding-top: 20px;
@@ -73,6 +102,14 @@
         padding-left: 10px;
         border-bottom: grey solid 1.5px;
       }
+      .form #badpassword input{
+          width: 90%;
+          height: 40px;
+          border: none;
+          background-color: MistyRose;
+          padding-left: 10px;
+          border-bottom: red solid 1.5px;
+        }
     .form #rememberMe{
       grid-area: rememberMe;
       margin-left: 30px;

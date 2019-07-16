@@ -6,14 +6,19 @@
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class = "form">
-      <div class="field" id = "email">
+      <div class="field" id="<%= flash[:alert] ? "bademail" : "email" %>">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter Email..." %>
       </div>
 
-      <div class="field" id = "password">
+      <div class="field" id="<%= flash[:alert] ? "badpassword" : "password" %>">
         <%= f.label :password %><br />
         <%= f.password_field :password, autocomplete: "current-password", placeholder: "∙∙∙∙∙∙∙"%>
+        <% if flash[:alert] %>
+          <div class="alert">
+              <%= flash[:alert] %>
+          </div>
+        <% end %>
       </div>
 
       <% if devise_mapping.rememberable? %>
