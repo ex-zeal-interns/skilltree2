@@ -7,7 +7,7 @@ class StaticProfile extends React.Component {
     const { email, firstname, lastname, timezone, url } = this.props.profile;
 
     return (
-      <div id="staticprofile">
+      <div className="staticprofile">
         <h1>{`${firstname}'s Profile`}</h1>
         <h2 id="fullname">
           {firstname} {lastname}

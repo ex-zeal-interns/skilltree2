@@ -12,7 +12,7 @@ class Profile extends React.Component {
     const my_url = `${host}/profile/${url}`;
 
     return (
-      <div id="staticprofile">
+      <div className="profile">
         <h1>My Profile</h1>
         <h2 id="fullname">
           {firstname} {lastname}

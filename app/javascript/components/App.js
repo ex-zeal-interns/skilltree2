@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Routes from "./Routes";
-import { BrowserRouter as Link } from "react-router-dom";
+import Logo from "./logo";
 
 class App extends React.Component {
   constructor(props) {
@@ -10,12 +10,15 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
-        <header>
-          <nav className="navbar">
-            <a href="/profile">My Dashboard</a>
-          </nav>
-        </header>
+      <div className="app">
+        <div className="white-header">
+          <img className="navLogo" src={Logo} />
+          <div className="navLinks">
+            <a className="navBtn" href="/profile">
+              My Dashboard
+            </a>
+          </div>
+        </div>
         <Routes />
       </div>
     );
