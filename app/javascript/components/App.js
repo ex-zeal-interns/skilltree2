@@ -1,6 +1,6 @@
 import React from "react";
 import Routes from "./Routes";
-import Logo from "./logo";
+import Logo from "./logo.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,9 +11,9 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="white-header">
-          <img className="navLogo" src={Logo} />
+          <img id="zeal-img" className="navLogo" src={Logo} />
           <div className="navLinks">
-            <a className="navBtn" href="/profile">
+            <a className="navBtn" href="./profile">
               My Dashboard
             </a>
           </div>

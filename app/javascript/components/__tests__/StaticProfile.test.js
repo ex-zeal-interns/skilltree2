@@ -1,5 +1,5 @@
 import React from "react";
-import StaticProfile from "./StaticProfile";
+import StaticProfile from "../StaticProfile";
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
