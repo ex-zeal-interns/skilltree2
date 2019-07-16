@@ -10,11 +10,15 @@ class StaticProfile extends React.Component {
       <div className="staticprofile">
         <h1 className="card-header">{`${firstname}'s Profile`}</h1>
         <div className="card">
-          <h2 id="fullname">
+          <h1 id="fullname">
             {firstname} {lastname}
+          </h1>
+          <h2 className="card-info" id="email">
+            ✉️ {email}
           </h2>
-          <h3 id="email">{email}</h3>
-          <h3 id="timezone">{timezone}</h3>
+          <h2 className="card-info" id="timezone">
+            🌐 {timezone}
+          </h2>
         </div>
       </div>
     );
