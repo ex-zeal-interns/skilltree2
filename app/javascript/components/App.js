@@ -19,7 +19,9 @@ class App extends React.Component {
             </a>
           </div>
         </div>
-        <Routes />
+        <div className="wrapper">
+          <Routes />
+        </div>
       </div>
     );
   }

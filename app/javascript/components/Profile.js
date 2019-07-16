@@ -13,13 +13,23 @@ class Profile extends React.Component {
 
     return (
       <div className="profile">
-        <h1>My Profile</h1>
-        <h2 id="fullname">
-          {firstname} {lastname}
-        </h2>
-        <h3 id="email">{email}</h3>
-        <h3 id="timezone">{timezone}</h3>
-        <h3 id="url">{my_url}</h3>
+        <h1 className="card-header">My Profile</h1>
+        <div className="card">
+          <div className="card-content">
+            <h1 className="prof-name" id="fullname">
+              {firstname} {lastname}
+            </h1>
+            <h2 className="card-info" id="email">
+              ✉️ {email}
+            </h2>
+            <h2 className="card-info" id="timezone">
+              🌐 {timezone}
+            </h2>
+            <h2 className="card-info" id="url">
+              {my_url}
+            </h2>
+          </div>
+        </div>
       </div>
     );
   }
