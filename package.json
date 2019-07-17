@@ -6,6 +6,8 @@
     "@rails/webpacker": "^4.0.7",
     "babel-eslint": "^10.0.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-zeal": "^1.9.0",
@@ -23,8 +25,6 @@
   },
   "devDependencies": {
     "add": "^2.0.6",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
     "eslint-plugin-jest": "^22.8.0",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
