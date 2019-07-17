@@ -93,4 +93,4 @@ production:
 
   # Cache manifest.json for performance  ([/**/__tests__/**/*.js/])
   cache_manifest: true
-  
+  exclude: ["**/__tests__/**"]
