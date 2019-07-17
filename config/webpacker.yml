@@ -91,6 +91,6 @@ production:
   # Extract and emit a css file
   extract_css: true
 
-  # Cache manifest.json for performance
+  # Cache manifest.json for performance  ([/**/__tests__/**/*.js/])
   cache_manifest: true
-  exclude: [/**/__tests__/**/*.js/]
+  exclude: ["**/*__tests__"]
