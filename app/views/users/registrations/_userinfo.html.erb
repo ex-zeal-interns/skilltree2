@@ -20,15 +20,17 @@
 </div>
 
 <div class = checkBoxs>
-  <div class="field" id = private>
+  <div class="field" id = "private">
     <%= f.label :Private_account? %><br />
     <%= f.check_box :privacy_status, {}, 1, 0 %>
+    <span class = "checkmark"></span>
     <%# 0 = checked, 1 = unchecked %>
   </div>
 
   <div class="field" id = "mentor">
     <%= f.label :Would_you_like_to_be_a_mentor? %><br />
     <%= f.check_box :mentor_status, {}, 1, 0 %>
+    <span class = "checkmark"></span>
     <%# 0 = checked, 1 = unchecked %>
   </div>
 </div>
