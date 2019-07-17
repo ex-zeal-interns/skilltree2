@@ -1,8 +1,7 @@
 {
   "name": "skill-tree",
   "scripts": {},
-  "env": {
-  },
+  "env": {},
   "formation": {},
   "addons": [
     "heroku-postgresql"
