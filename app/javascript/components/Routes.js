@@ -19,6 +19,13 @@ class Routes extends React.Component {
 
   render() {
     const { profile } = this.state;
+    const {
+      logged_in,
+      sign_out,
+      sign_in,
+      current_user,
+      edit_user
+    } = this.props;
 
     // builds custom url
     const profUrl = `/profile/${profile.url}`;
@@ -26,7 +33,7 @@ class Routes extends React.Component {
     return (
       <Router>
         <Route
-          path="/profile"
+          path="/profile/:id"
           exact
           render={props => <Profile {...props} profile={profile} />}
         />
