@@ -15,6 +15,6 @@ describe("<Routes>", () => {
     expect(wrapper.find(Router)).toHaveLength(1);
   });
   it("has a route to the dashboard (<Profile/>)", () => {
-    expect(wrapper.find('[path="/profile"]')).toHaveLength(1);
+    expect(wrapper.find('[path="/profile/:id"]')).toHaveLength(1);
   });
 });

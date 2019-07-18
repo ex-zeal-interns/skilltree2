@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, { shallow } from "enzyme";
+import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import App from "../App";
 import Routes from "../Routes";
@@ -13,5 +13,12 @@ describe("<App>", () => {
   });
   it("has a router", () => {
     expect(wrapper.find(Routes)).toHaveLength(1);
+  });
+  it("sign in link says Sign In when user is not logged in", () => {
+    const props = {
+      logged_in: false
+    };
+    const header = mount(<App />);
+    expect(header.find("#signInOut").text()).toBe("Sign In");
   });
 });

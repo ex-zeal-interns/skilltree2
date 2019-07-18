@@ -22,11 +22,16 @@ class App extends React.Component {
           <div className="navLinks">
             <a
               className="navBtn"
+              id="profileBtn"
               href={(logged_in && `/profile/${current_user.id}`) || sign_in}
             >
               My Dashboard
             </a>
-            <a className="navBtn" href={(logged_in && sign_out) || sign_in}>
+            <a
+              className="navBtn"
+              id="signInOut"
+              href={(logged_in && sign_out) || sign_in}
+            >
               {(logged_in && "Sign Out") || "Sign In"}
             </a>
           </div>
