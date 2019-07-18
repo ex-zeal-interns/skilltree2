@@ -1,0 +1,36 @@
+
+<div class="field" id = "email2">
+  <%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+</div>
+
+<div class="field" id = "firstName">
+  <%= f.label :first_name %><br />
+  <%= f.text_field :first_name, autocomplete: "first_name" %>
+</div>
+
+<div class="field" id = "lastName">
+  <%= f.label :last_name %><br />
+  <%= f.text_field :last_name, autocomplete: "last_name" %>
+</div>
+
+<div class="field" id = "timeZone">
+  <%= f.label :time_zone %><br />
+  <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, include_blank: true) %>
+</div>
+
+<div class = "checkBoxs">
+  <div class="field" id = "private">
+    <%= f.label :Private_account? %><br />
+    <%= f.check_box :privacy_status, {}, 1, 0 %>
+    <span class = "checkmark"></span>
+    <%# 0 = checked, 1 = unchecked %>
+  </div>
+
+  <div class="field" id = "mentor">
+    <%= f.label :Would_you_like_to_be_a_mentor? %><br />
+    <%= f.check_box :mentor_status, {}, 1, 0 %>
+    <span class = "checkmark"></span>
+    <%# 0 = checked, 1 = unchecked %>
+  </div>
+</div>

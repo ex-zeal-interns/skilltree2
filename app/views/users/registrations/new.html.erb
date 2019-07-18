@@ -1,0 +1,34 @@
+<div class = "signupContainer">
+  <div class = "padding1"></div>
+  <div class = "zealLogo">
+    <%=image_tag("ZEAL-logo-final.png")%>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class = "form">
+
+  <%= render partial: "userinfo", locals: {f: f} %>
+    <div class="field" id = "newPassword">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field" id = "passConf">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="actions" id = "logButton">
+      <%= f.submit "Sign up" %>
+    </div>
+    <% end %>
+    <div id = "links">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+  <div class = "padding2"></div>
+</div>
