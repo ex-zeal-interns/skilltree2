@@ -1,4 +1,5 @@
 import React from "react";
+import AllCategories from "./AllCategories";
 
 class Profile extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class Profile extends React.Component {
         <h1 className="card-header">My Profile</h1>
         <div className="card">
           <div className="card-content">
-            <h1 className="prof-name" id="fullname">
+            <h1 className="card-info" id="fullname">
               {firstname} {lastname}
             </h1>
             <h2 className="card-info" id="email">
@@ -27,6 +28,9 @@ class Profile extends React.Component {
             <h2 className="card-info" id="url">
               {my_url}
             </h2>
+          </div>
+          <div className="categories">
+            <AllCategories />
           </div>
         </div>
       </div>

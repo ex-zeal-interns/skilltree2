@@ -13,7 +13,7 @@ class App extends React.Component {
         <div className="white-header">
           <img id="zeal-img" className="navLogo" src={Logo} />
           <div className="navLinks">
-            <a className="navBtn" href="./profile">
+            <a className="navBtn" href="/profile">
               My Dashboard
             </a>
           </div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :ratings
+  resources :categories
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
   end
