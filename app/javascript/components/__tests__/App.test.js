@@ -14,11 +14,8 @@ describe("<App>", () => {
   it("has a router", () => {
     expect(wrapper.find(Routes)).toHaveLength(1);
   });
-  it("sign in link says Sign In when user is not logged in", () => {
-    const props = {
-      logged_in: false
-    };
-    const header = mount(<App />);
-    expect(header.find("#signInOut").text()).toBe("Sign In");
+  it("sign in link says Sign Out when user is logged in", () => {
+    wrapper.setProps({ logged_in: true, current_user: { id: 1 } });
+    expect(wrapper.find("#signInOut").text()).toBe("Log Out");
   });
 });

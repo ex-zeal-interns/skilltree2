@@ -32,7 +32,7 @@ class App extends React.Component {
               id="signInOut"
               href={(logged_in && sign_out) || sign_in}
             >
-              {(logged_in && "Sign Out") || "Sign In"}
+              {(logged_in && "Log Out") || "Log In"}
             </a>
           </div>
         </div>
