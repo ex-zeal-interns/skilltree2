@@ -20,7 +20,7 @@ class App extends React.Component {
         <Header
           logged_in={logged_in}
           sign_out_path={sign_out_path}
-          sign_in={sign_in_path}
+          sign_in_path={sign_in_path}
           current_user={current_user}
           edit_user={edit_user}
         />
