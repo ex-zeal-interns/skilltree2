@@ -1,6 +1,6 @@
 import React from "react";
 import Routes from "./Routes";
-import Logo from "./logo.png";
+import Header from "./Header";
 
 class App extends React.Component {
   constructor(props) {
@@ -8,16 +8,22 @@ class App extends React.Component {
     this.state = {};
   }
   render() {
+    const {
+      logged_in,
+      sign_out_path,
+      sign_in_path,
+      current_user,
+      edit_user
+    } = this.props;
     return (
       <div className="app">
-        <div className="white-header">
-          <img id="zeal-img" className="navLogo" src={Logo} />
-          <div className="navLinks">
-            <a className="navBtn" href="./profile">
-              My Dashboard
-            </a>
-          </div>
-        </div>
+        <Header
+          logged_in={logged_in}
+          sign_out_path={sign_out_path}
+          sign_in_path={sign_in_path}
+          current_user={current_user}
+          edit_user={edit_user}
+        />
         <div className="wrapper">
           <Routes />
         </div>

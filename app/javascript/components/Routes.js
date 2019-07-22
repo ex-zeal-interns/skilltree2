@@ -26,7 +26,7 @@ class Routes extends React.Component {
     return (
       <Router>
         <Route
-          path="/profile"
+          path="/profile/:id"
           exact
           render={props => <Profile {...props} profile={profile} />}
         />

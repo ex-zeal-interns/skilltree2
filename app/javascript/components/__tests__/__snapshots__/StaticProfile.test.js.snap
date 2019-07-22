@@ -1,3 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<StaticProfile> renders corretly 1`] = `ShallowWrapper {}`;
+exports[`<StaticProfile> renders corretly 1`] = `
+<div
+  className="staticprofile"
+>
+  <h1
+    className="card-header"
+  >
+    John's Profile
+  </h1>
+  <div
+    className="card"
+  >
+    <h1
+      id="fullname"
+    >
+      John
+       
+      Doe
+    </h1>
+    <h2
+      className="card-info"
+      id="email"
+    >
+      ✉️ 
+      john@example.com
+    </h2>
+    <h2
+      className="card-info"
+      id="timezone"
+    >
+      🌐 
+      UTC
+    </h2>
+  </div>
+</div>
+`;
