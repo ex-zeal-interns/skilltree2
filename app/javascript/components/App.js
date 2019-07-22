@@ -19,19 +19,13 @@ class App extends React.Component {
       <div className="app">
         <Header
           logged_in={logged_in}
-          sign_out={sign_out}
-          sign_in={sign_in}
+          sign_out_path={sign_out_path}
+          sign_in={sign_in_path}
           current_user={current_user}
           edit_user={edit_user}
         />
         <div className="wrapper">
-          <Routes
-            logged_in={logged_in}
-            sign_out={sign_out}
-            sign_in={sign_in}
-            current_user={current_user}
-            edit_user={edit_user}
-          />
+          <Routes />
         </div>
       </div>
     );
