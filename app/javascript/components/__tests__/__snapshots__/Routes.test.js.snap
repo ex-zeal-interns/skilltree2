@@ -1,3 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Routes> should render corretly 1`] = `ShallowWrapper {}`;
+exports[`<Routes> should render corretly 1`] = `
+<BrowserRouter>
+  <Route
+    exact={true}
+    path="/profile/:id"
+    render={[Function]}
+  />
+  <Route
+    exact={true}
+    path="/profile/iou22o38f4"
+    render={[Function]}
+  />
+</BrowserRouter>
+`;

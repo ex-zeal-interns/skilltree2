@@ -24,7 +24,7 @@ class Header extends Component {
           <a
             className="navBtn"
             id="signInOut"
-            href={(logged_in && sign_out) || sign_in_path}
+            href={(logged_in && sign_out_path) || sign_in_path}
           >
             {(logged_in && "Log Out") || "Log In"}
           </a>
