@@ -10,28 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_204233) do
+ActiveRecord::Schema.define(version: 2019_07_11_183730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
-    t.string "category_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.integer "score"
-    t.bigint "mentor_id"
-    t.bigint "developer_id"
-    t.bigint "categories_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["categories_id"], name: "index_ratings_on_categories_id"
-    t.index ["developer_id"], name: "index_ratings_on_developer_id"
-    t.index ["mentor_id"], name: "index_ratings_on_mentor_id"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -51,7 +33,4 @@ ActiveRecord::Schema.define(version: 2019_07_18_204233) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "ratings", "categories", column: "categories_id"
-  add_foreign_key "ratings", "users", column: "developer_id"
-  add_foreign_key "ratings", "users", column: "mentor_id"
 end
