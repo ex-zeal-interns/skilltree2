@@ -5,8 +5,8 @@ class Header extends Component {
   render() {
     const {
       logged_in,
-      sign_out,
-      sign_in,
+      sign_out_path,
+      sign_in_path,
       current_user,
       edit_user
     } = this.props;
@@ -17,14 +17,14 @@ class Header extends Component {
           <a
             className="navBtn"
             id="profileBtn"
-            href={(logged_in && `/profile/${current_user.id}`) || sign_in}
+            href={(logged_in && `/profile/${current_user.id}`) || sign_in_path}
           >
             My Dashboard
           </a>
           <a
             className="navBtn"
             id="signInOut"
-            href={(logged_in && sign_out) || sign_in}
+            href={(logged_in && sign_out) || sign_in_path}
           >
             {(logged_in && "Log Out") || "Log In"}
           </a>

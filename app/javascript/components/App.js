@@ -10,8 +10,8 @@ class App extends React.Component {
   render() {
     const {
       logged_in,
-      sign_out,
-      sign_in,
+      sign_out_path,
+      sign_in_path,
       current_user,
       edit_user
     } = this.props;
