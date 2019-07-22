@@ -1,19 +1,19 @@
-let allCategories = function() {
-  return fetch("/categories.json").then(resp => {
+let oneUser = function(id) {
+  return fetch(`/user/${id}.json`).then(resp => {
     let json = resp.json();
     console.log(json);
     return json;
   });
 };
 
-export { allCategories };
+export { oneUser };
 
-let allRatings = function() {
-  return fetch("/ratings.json").then(resp => {
+let myRatings = function(id) {
+  return fetch(`/myratings/${id}.json`).then(resp => {
     let json = resp.json();
     console.log(json);
     return json;
   });
 };
 
-export { allRatings };
+export { myRatings };

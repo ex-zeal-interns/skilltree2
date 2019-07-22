@@ -2,7 +2,7 @@ import React from "react";
 
 class StaticProfile extends React.Component {
   render() {
-    const { email, firstname, lastname, timezone, url } = this.props.profile;
+    const { email, firstname, lastname, timezone, url } = this.props;
 
     return (
       <div className="staticprofile">

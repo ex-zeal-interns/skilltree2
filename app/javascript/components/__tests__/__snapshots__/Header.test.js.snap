@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header> renders without crashing 1`] = `
+<div
+  className="white-header"
+>
+  <img
+    className="navLogo"
+    id="zeal-img"
+    src="test-file-stub"
+  />
+  <div
+    className="navLinks"
+  >
+    <a
+      className="navBtn"
+      id="profileBtn"
+    >
+      My Dashboard
+    </a>
+    <a
+      className="navBtn"
+      id="signInOut"
+    >
+      Log In
+    </a>
+  </div>
+</div>
+`;
