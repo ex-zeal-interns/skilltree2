@@ -4,6 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import App from "../App";
 import Routes from "../Routes";
 import Header from "../Header";
+import "whatwg-fetch";
 
 Enzyme.configure({ adapter: new Adapter() });
 

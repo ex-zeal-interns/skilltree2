@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<StaticProfile> renders corretly 1`] = `
+exports[`<Profile> renders corretly 1`] = `
 <div
   className="profile"
 >
@@ -16,33 +16,37 @@ exports[`<StaticProfile> renders corretly 1`] = `
       className="card-content"
     >
       <h1
-        className="prof-name"
+        className="card-info"
         id="fullname"
       >
-        John
          
-        Doe
       </h1>
       <h2
         className="card-info"
         id="email"
       >
         ✉️ 
-        john@example.com
       </h2>
       <h2
         className="card-info"
         id="timezone"
       >
         🌐 
-        UTC
       </h2>
       <h2
         className="card-info"
         id="url"
       >
-        http://localhost/profile/iou22o38f4
+        http://localhost/profile/
+        <br />
       </h2>
+    </div>
+    <div
+      className="categories"
+    >
+      <AllCategories
+        myRatings={Array []}
+      />
     </div>
   </div>
 </div>
