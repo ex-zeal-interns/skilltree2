@@ -7,33 +7,27 @@ class Routes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      profile: {
-        firstname: "John",
-        lastname: "Doe",
-        email: "john@example.com",
-        timezone: "UTC",
-        url: "iou22o38f4"
-      }
+      url: "iou22o38f4"
     };
   }
 
   render() {
-    const { profile } = this.state;
+    const { url } = this.state;
 
     // builds custom url
-    const profUrl = `/profile/${profile.url}`;
+    const profUrl = `/profile/${url}`;
 
     return (
       <Router>
         <Route
           path="/profile/:id"
           exact
-          render={props => <Profile {...props} profile={profile} />}
+          render={props => <Profile {...props} />}
         />
         <Route
           path={profUrl}
           exact
-          render={props => <StaticProfile {...props} profile={profile} />}
+          render={props => <StaticProfile {...props} />}
         />
       </Router>
     );

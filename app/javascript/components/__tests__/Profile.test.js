@@ -2,10 +2,12 @@ import React from "react";
 import Profile from "../Profile";
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import AllCategories from "../AllCategories";
+import "whatwg-fetch";
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
 
-describe("<StaticProfile>", () => {
+describe("<Profile>", () => {
   const profile = {
     firstname: "John",
     lastname: "Doe",
@@ -13,7 +15,10 @@ describe("<StaticProfile>", () => {
     timezone: "UTC",
     url: "iou22o38f4"
   };
-  const wrapper = shallow(<Profile profile={profile} />);
+
+  const wrapper = shallow(
+    <Profile profile={profile} match={{ params: { id: 1 } }} />
+  );
   it("renders corretly", () => {
     expect(wrapper).toMatchSnapshot();
   });
@@ -28,5 +33,9 @@ describe("<StaticProfile>", () => {
   });
   it("displays a unique url", () => {
     expect(wrapper.find("#url").length).toEqual(1);
+  });
+
+  it("should render the AllCategories component", () => {
+    expect(wrapper.find(AllCategories)).toHaveLength(1);
   });
 });

@@ -7,7 +7,7 @@ exports[`<StaticProfile> renders corretly 1`] = `
   <h1
     className="card-header"
   >
-    John's Profile
+    undefined's Profile
   </h1>
   <div
     className="card"
@@ -15,23 +15,19 @@ exports[`<StaticProfile> renders corretly 1`] = `
     <h1
       id="fullname"
     >
-      John
        
-      Doe
     </h1>
     <h2
       className="card-info"
       id="email"
     >
       ✉️ 
-      john@example.com
     </h2>
     <h2
       className="card-info"
       id="timezone"
     >
       🌐 
-      UTC
     </h2>
   </div>
 </div>

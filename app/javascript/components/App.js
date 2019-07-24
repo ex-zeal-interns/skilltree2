@@ -22,7 +22,6 @@ class App extends React.Component {
           sign_out_path={sign_out_path}
           sign_in_path={sign_in_path}
           current_user={current_user}
-          edit_user={edit_user}
         />
         <div className="wrapper">
           <Routes />
