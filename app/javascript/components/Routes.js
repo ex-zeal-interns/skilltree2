@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import StaticProfile from "./StaticProfile";
 import Profile from "./Profile";
-import PropTypes from "prop-types";
 
 class Routes extends React.Component {
   constructor(props) {

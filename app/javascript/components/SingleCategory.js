@@ -1,10 +1,6 @@
 import React from "react";
 
 class SingleCategory extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
     const { index, rating } = this.props;
     return (
