@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Rating, type: :model do
-
     describe 'Rating' do
-
         context 'when required information is missing' do
           let(:rating) {FactoryBot.build(:rating, mentor_id: nil )}
             it 'will not create without a mentor_id' do
@@ -19,5 +17,4 @@ RSpec.describe Rating, type: :model do
             end
         end
     end
-
 end

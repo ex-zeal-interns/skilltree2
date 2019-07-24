@@ -16,6 +16,5 @@ RSpec.describe RatingsController, type: :controller do
                 get :my_ratings, params: {user_id: user.id}
                 expect(response.body).to eq([rating.as_json(include: { category: {} })].to_json)
             end
-
     end
 end
