@@ -5,6 +5,7 @@ exports[`<Header> renders without crashing 1`] = `
   className="white-header"
 >
   <img
+    alt="zeal logo"
     className="navLogo"
     id="zeal-img"
     src="test-file-stub"

@@ -1,0 +1,9 @@
+Metrics/BlockLength:
+  Exclude:
+    - "Rakefile"
+    - "**/*.rake"
+    - "spec/**/*.rb"
+    - "config/routes.rb"
+Metrics/LineLength:
+  Exclude:
+    - "config/routes.rb"

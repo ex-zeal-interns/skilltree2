@@ -21,13 +21,27 @@ exports[`<StaticProfile> renders corretly 1`] = `
       className="card-info"
       id="email"
     >
-      ✉️ 
+      <span
+        aria-label="envelope"
+        role="img"
+      >
+         
+        ✉️
+      </span>
+       
     </h2>
     <h2
       className="card-info"
       id="timezone"
     >
-      🌐 
+      <span
+        aria-label="globe"
+        role="img"
+      >
+         
+        🌐
+      </span>
+       
     </h2>
   </div>
 </div>
