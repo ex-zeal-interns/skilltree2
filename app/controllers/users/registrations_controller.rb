@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def oneUser
+  def one_user
       @user = User.find(params[:id])
       render json: @user
   end

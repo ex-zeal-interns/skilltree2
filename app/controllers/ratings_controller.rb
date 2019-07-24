@@ -7,13 +7,10 @@ class RatingsController < ApplicationController
         render json: @ratings
     end
 
-    def myRatings
-        @myRatings = []
-        Rating.find_each do |rating|
-            if rating.developer_id == params[:user_id].to_i
-                @myRatings << rating.as_json(:include => {:category => {}})
-            end
+    def my_ratings
+        @ratings = Rating.where(developer_id: params[:user_id]).map do |rating|
+          rating.as_json(include: { category: {} })
         end
-        render json: @myRatings
+        render json: @ratings
     end
 end

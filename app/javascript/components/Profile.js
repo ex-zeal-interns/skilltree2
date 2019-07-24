@@ -12,7 +12,7 @@ class Profile extends React.Component {
     };
   }
 
-  componentWillMount() {
+  renderingFunction() {
     let id = this.props.match.params.id;
     oneUser(id).then(APIuser => {
       this.setState({ user: APIuser });
@@ -21,15 +21,12 @@ class Profile extends React.Component {
       this.setState({ myRatings: APIrating });
     });
   }
+  componentWillMount() {
+    this.renderingFunction();
+  }
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
-      let id = this.props.match.params.id;
-      oneUser(id).then(APIusers => {
-        this.setState({ user: APIusers });
-      });
-      myRatings(id).then(APIrating => {
-        this.setState({ myRatings: APIrating });
-      });
+      this.renderingFunction();
     }
   }
 
