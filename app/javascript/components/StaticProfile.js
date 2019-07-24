@@ -1,26 +1,30 @@
-import React from "react"
-import PropTypes from "prop-types"
-import ReactDOM from 'react-dom'
+import React from "react";
 
-class StaticProfile extends React.Component {
-
-  render () {
-
-    // coming from fetch of profile (find where(url = {url}))
-    const {email, firstname, lastname, timezone, url} = this.props.profile
-    const BASE_URL = process.env.REACT_APP_BASE_URL
-    // local host will change on deployment
-    const my_url = `${BASE_URL}/profile/${url}`
-
-    return (
-      <div id="staticprofile">
-        <h2 id="fullname">{firstname} {lastname}</h2>
-        <h3 id="email">{email}</h3>
-        <h3 id="timezone">{timezone}</h3>
-        <h3 id="url">{my_url}</h3>
+function StaticProfile({ email, firstname, lastname, timezone }) {
+  return (
+    <div className="staticprofile">
+      <h1 className="card-header">{`${firstname}'s Profile`}</h1>
+      <div className="card">
+        <h1 id="fullname">
+          {firstname} {lastname}
+        </h1>
+        <h2 className="card-info" id="email">
+          <span aria-label="envelope" role="img">
+            {" "}
+            ✉️
+          </span>{" "}
+          {email}
+        </h2>
+        <h2 className="card-info" id="timezone">
+          <span aria-label="globe" role="img">
+            {" "}
+            🌐
+          </span>{" "}
+          {timezone}
+        </h2>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default StaticProfile
+export default StaticProfile;

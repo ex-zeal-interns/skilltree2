@@ -1,44 +1,38 @@
-import React from "react"
-import ReactDOM from 'react-dom'
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import PropTypes from "prop-types"
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import StaticProfile from './StaticProfile'
+import Profile from "./Profile";
+import StaticProfile from "./StaticProfile";
 
 class Routes extends React.Component {
-  constructor(props){
-    super(props)
-      this.state = {
-        profile: {
-          firstname: 'John',
-          lastname: 'Doe',
-          email: 'john@example.com',
-          timezone: 'UTC',
-          url: 'iou22o38f4',
-        },
-      }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: "iou22o38f4"
+    };
+  }
 
-  render () {
-      const {profile} = this.state
+  render() {
+    const { url } = this.state;
 
-      // builds custom url
-      const profUrl = `/profile/${profile.url}`
+    // builds custom url
+    const profUrl = `/profile/${url}`;
 
     return (
-
-        <Router>
-          <Link to={profUrl}>Profile</Link>
-
-          <Route path={profUrl} render={(props) => <StaticProfile{...props}
-            profile={profile}
-            />} />
-
-        </Router>
-
-
+      <Router>
+        <Route
+          exact
+          path="/profile/:id"
+          render={props => <Profile {...props} />}
+        />
+        <Route
+          exact
+          path={profUrl}
+          render={props => <StaticProfile {...props} />}
+        />
+      </Router>
     );
   }
 }
 
-export default Routes
+export default Routes;

@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Profile> renders corretly 1`] = `
+<div
+  className="profile"
+>
+  <h1
+    className="card-header"
+  >
+    My Profile
+  </h1>
+  <div
+    className="card"
+  >
+    <div
+      className="card-content"
+    >
+      <h1
+        className="card-info"
+        id="fullname"
+      >
+         
+      </h1>
+      <h2
+        className="card-info"
+        id="email"
+      >
+        ✉️ 
+      </h2>
+      <h2
+        className="card-info"
+        id="timezone"
+      >
+        🌐 
+      </h2>
+      <h2
+        className="card-info"
+        id="url"
+      >
+        http://localhost/profile/
+        <br />
+      </h2>
+    </div>
+    <div
+      className="categories"
+    >
+      <AllCategories
+        myRatings={Array []}
+      />
+    </div>
+  </div>
+</div>
+`;

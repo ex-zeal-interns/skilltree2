@@ -1,3 +1,496 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+////////devise alert and notice //////////////////
+
+.notice {
+  color: green;
+  font-weight: bold;
+}
+.alert {
+  color: red;
+  font-weight: bold;
+}
+
+////////////// devise login page /////////////////
+
+.loginContainer {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: 180px 250px;
+  grid-template-areas:
+    "padding1 zealLogo padding2 "
+    "padding1 form padding2";
+}
+.zealLogo {
+  grid-area: zealLogo;
+  text-align: center;
+}
+.zealLogo img {
+  height: 130px;
+  width: 200px;
+  display: inline-block;
+}
+.loginContainer .form {
+  grid-area: form;
+  background-color: #fafafa;
+  padding: 10px;
+  border-radius: 8px;
+  border-bottom: #ffb648 solid 8px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 80px 80px 60px auto;
+  grid-template-areas:
+    "email email"
+    "password password"
+    "rememberMe rememberMe"
+    "logButton links";
+}
+.form #email {
+  grid-area: email;
+  margin-left: 30px;
+  margin-top: 15px;
+}
+.form #bademail {
+  grid-area: email;
+  margin-left: 30px;
+  margin-top: 15px;
+}
+.form #email label {
+  font-weight: bold;
+}
+.form #email input {
+  width: 90%;
+  height: 40px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #bademail input {
+  width: 90%;
+  height: 40px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: MistyRose;
+  padding-left: 10px;
+  border-bottom: red solid 1.5px;
+}
+.form #password {
+  grid-area: password;
+  margin-left: 30px;
+  padding-top: 20px;
+}
+.form #badpassword {
+  grid-area: password;
+  margin-left: 30px;
+  padding-top: 20px;
+}
+.form #password label {
+  font-weight: bold;
+}
+.form #password input {
+  width: 90%;
+  height: 40px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #badpassword input {
+  width: 90%;
+  height: 40px;
+  border: none;
+  background-color: MistyRose;
+  padding-left: 10px;
+  border-bottom: red solid 1.5px;
+}
+.form #rememberMe {
+  grid-area: rememberMe;
+  margin-left: 30px;
+  margin-top: 25px;
+}
+.form #rememberMe label {
+  font-weight: bold;
+  margin-left: 20px;
+}
+.form #rememberMe input {
+  opacity: 0;
+  z-index: 999;
+  position: absolute;
+}
+input:checked ~ .checkmark {
+  background-color: #ffb648;
+  height: 12px;
+  width: 12px;
+  border-radius: 3px;
+  position: absolute;
+  margin-top: 3px;
+  margin-left: 2px;
+  border: 1px solid #ffb648;
+}
+.checkmark {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  background-color: lightgrey;
+  border-radius: 3px;
+  margin-top: 3px;
+  margin-left: 2px;
+  border: 1px solid grey;
+}
+.checkmark:after {
+  content: "";
+  display: none;
+}
+input:checked ~ .checkmark:after {
+  display: block;
+  content: "";
+  color: #ffb648;
+  background-color: #ffb648;
+  height: 6px;
+  width: 3px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(30deg);
+  margin-top: 1px;
+  margin-left: 3px;
+}
+.checkmark {
+  position: absolute;
+  background-color: #eee;
+}
+.form #logButton {
+  grid-area: logButton;
+  margin-bottom: 40px;
+}
+.form #logButton input {
+  width: 60%;
+  height: 40px;
+  margin-top: 5%;
+  margin-left: 30px;
+  background: #ffb648;
+  border: #ffb648;
+  font-size: 18px;
+  border-radius: 80px 80px 80px 80px;
+  color: white;
+  -webkit-transition: border-color 300ms ease, background-color 300ms ease;
+  transition: border-color 300ms ease, background-color 300ms ease;
+}
+.form #logButton input:hover {
+  border-color: hsla(36.18556701030928, 80.17%, 52.55%, 1);
+  background-color: hsla(36.0655737704918, 80.3%, 52.62%, 1);
+  background-image: none;
+}
+
+.form #links {
+  grid-area: links;
+  text-align: right;
+  margin-right: 50px;
+}
+.form #links a {
+  font-weight: bold;
+  color: #333;
+}
+
+.padding1 {
+  grid-area: padding1;
+}
+.padding2 {
+  grid-area: padding2;
+}
+
+////////////devise sign up page and edit page////////////////
+
+.deviseContainer {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 180px 250px;
+  grid-template-areas:
+    "padding1 zealLogo padding2 "
+    "padding1 form padding2";
+}
+
+.signupContainer {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 180px 250px;
+  grid-template-areas:
+    "padding1 zealLogo padding2 "
+    "padding1 form padding2";
+}
+
+.deviseContainer .form {
+  grid-area: form;
+  background-color: #fafafa;
+  padding: 10px;
+  border-radius: 8px;
+  border-bottom: #ffb648 solid 8px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 80px 80px 90px 90px 80px;
+  grid-template-areas:
+    "email timezone"
+    "first last"
+    "newPassword passConf"
+    "checkBoxs checkBoxs"
+    "currentPassword logButton"
+    "currentPassword links";
+}
+.signupContainer .form {
+  grid-area: form;
+  background-color: #fafafa;
+  padding: 10px;
+  border-radius: 8px;
+  border-bottom: #ffb648 solid 8px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 80px 80px 90px 90px 80px;
+  grid-template-areas:
+    "email timezone"
+    "first last"
+    "newPassword passConf"
+    "checkBoxs logButton"
+    "checkBoxs links";
+}
+.form #email2 {
+  grid-area: email;
+}
+.form #email2 label {
+  font-weight: bold;
+}
+.form #email2 input {
+  width: 80%;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #timeZone {
+  grid-area: timezone;
+}
+.form #timeZone label {
+  font-weight: bold;
+}
+.form #timeZone select {
+  width: 90%;
+  height: 30px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #firsName {
+  grid-area: first;
+}
+.form #firstName label {
+  font-weight: bold;
+}
+.form #firstName input {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #lastName {
+  grid-area: last;
+}
+.form #lastName label {
+  font-weight: bold;
+}
+.form #lastName input {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #checkBoxs {
+  grid-area: checkBoxs;
+}
+.form #checkBoxs label {
+  font-weight: bold;
+}
+.form #checkBoxs input {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #newPassword {
+  grid-area: newPassword;
+}
+.form #newPassword label {
+  font-weight: bold;
+}
+.form #newPassword input {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #passConf {
+  grid-area: passConf;
+}
+.form #passConf label {
+  font-weight: bold;
+}
+.form #passConf input {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #currentPassword {
+  grid-area: currentPassword;
+}
+.form #currentPassword label {
+  font-weight: bold;
+}
+.form #currentPassword input {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  border-bottom: grey solid 1.5px;
+}
+.form #mentor input,
+#private input {
+  opacity: 0;
+  z-index: 999;
+  position: absolute;
+}
+.form #private {
+  margin-bottom: 20px;
+}
+/* ------------NavBar--------------------------- */
+.white-header {
+  height: 110px;
+  background-color: #fff;
+  background-position: 0px 0px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 10;
+}
+.navLogo {
+  margin-left: 5%;
+  position: relative;
+  top: 20px;
+}
+.navLinks {
+  float: right;
+  position: relative;
+  top: 15px;
+  right: 50px;
+  z-index: 11;
+  margin: 0;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.navBtn {
+  padding: 5px 5px;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+/* -----------------------Profile-------------------------------- */
+
+.card-header {
+  padding: 15px;
+  background-color: #f2f2f2;
+}
+.profile .card {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: auto;
+  grid-template-areas: "card categories";
+
+  padding: 29px 40px 20px;
+  border-style: none none solid;
+  border-width: 1px 1px 6px;
+  border-color: #dedede #dedede #ffb648;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.02),
+    0 29px 21px -20px rgba(0, 0, 0, 0.14);
+}
+
+.card-content {
+  grid-area: card;
+  padding: 15px;
+}
+#fullname {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 400;
+}
+#email,
+#timezone,
+#url {
+  color: #ababab;
+  font-size: 14px;
+}
+.categories {
+  grid-area: categories;
+  padding: 15px;
+  margin-left: 10px;
+}
+.singleCategory {
+  display: grid;
+  grid-template-columns: 80px auto;
+  grid-template-rows: auto;
+  grid-template-areas: "score category_name";
+}
+#score {
+  grid-area: score;
+  color: #adadad;
+  text-align: center;
+}
+#category_name {
+  grid-area: category_name;
+}
