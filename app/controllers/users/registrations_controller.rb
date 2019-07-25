@@ -16,10 +16,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render json: @user
   end
 
-	def static_user
-		@user = User.where("unique_url = ?" , params[:unique_url]).first
-		render json: @user
-	end
+  def static_user
+    @user = User.where('unique_url = ?', params[:unique_url]).first
+    render json: @user
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params

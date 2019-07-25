@@ -17,8 +17,8 @@ class RatingsController < ApplicationController
     render json: @ratings
   end
 
-	def my_static_ratings
-		@user = User.where("unique_url = ?" , params[:unique_url]).first
+  def my_static_ratings
+    @user = User.where('unique_url = ?', params[:unique_url]).first
     @ratings = Rating.where(developer_id: @user.id).map do |rating|
       rating.as_json(include: { category: {} })
     end
