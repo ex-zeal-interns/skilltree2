@@ -17,3 +17,23 @@ const myRatings = id => {
 };
 
 export { myRatings };
+
+const oneStaticUser = unique_url => {
+  return fetch(`/staticuser/${unique_url}.json`).then(resp => {
+    const json = resp.json();
+
+    return json;
+  });
+};
+
+export { oneStaticUser };
+
+const myStaticRatings = unique_url => {
+  return fetch(`/mystaticratings/${unique_url}.json`).then(resp => {
+    const json = resp.json();
+
+    return json;
+  });
+};
+
+export { myStaticRatings };
