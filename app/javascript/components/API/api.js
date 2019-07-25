@@ -1,15 +1,17 @@
-let oneUser = function(id) {
+const oneUser = id => {
   return fetch(`/user/${id}.json`).then(resp => {
-    let json = resp.json();
+    const json = resp.json();
+
     return json;
   });
 };
 
 export { oneUser };
 
-let myRatings = function(id) {
+const myRatings = id => {
   return fetch(`/myratings/${id}.json`).then(resp => {
-    let json = resp.json();
+    const json = resp.json();
+
     return json;
   });
 };

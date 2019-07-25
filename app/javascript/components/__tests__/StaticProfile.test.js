@@ -1,15 +1,16 @@
-import React from "react";
-import StaticProfile from "../StaticProfile";
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import React from "react";
+
+import StaticProfile from "../StaticProfile";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("<StaticProfile>", () => {
   const profile = {
+    email: "john@example.com",
     firstname: "John",
     lastname: "Doe",
-    email: "john@example.com",
     timezone: "UTC",
     url: "iou22o38f4"
   };
