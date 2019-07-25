@@ -15,7 +15,7 @@ exports[`<StaticProfile> renders corretly 1`] = `
     <h1
       id="fullname"
     >
-       
+
     </h1>
     <h2
       className="card-info"
@@ -25,10 +25,10 @@ exports[`<StaticProfile> renders corretly 1`] = `
         aria-label="envelope"
         role="img"
       >
-         
+
         ✉️
       </span>
-       
+
     </h2>
     <h2
       className="card-info"
@@ -38,10 +38,10 @@ exports[`<StaticProfile> renders corretly 1`] = `
         aria-label="globe"
         role="img"
       >
-         
+
         🌐
       </span>
-       
+
     </h2>
   </div>
 </div>

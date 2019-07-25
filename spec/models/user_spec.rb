@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'user' do
     let(:user) { build(:user) }
+
     context 'when all required user information is entered' do
       it 'user' do
         expect(user).to be_valid

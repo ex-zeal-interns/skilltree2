@@ -19,7 +19,7 @@ exports[`<Profile> renders corretly 1`] = `
         className="card-info"
         id="fullname"
       >
-         
+
       </h1>
       <h2
         className="card-info"
@@ -29,10 +29,11 @@ exports[`<Profile> renders corretly 1`] = `
           aria-label="envelope"
           role="img"
         >
-           
+
           ✉️
         </span>
-         
+
+
       </h2>
       <h2
         className="card-info"
@@ -42,10 +43,11 @@ exports[`<Profile> renders corretly 1`] = `
           aria-label="globe"
           role="img"
         >
-           
+
           🌐
         </span>
-         
+
+
       </h2>
       <h2
         className="card-info"

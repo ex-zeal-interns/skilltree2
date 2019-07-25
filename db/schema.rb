@@ -13,6 +13,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20_190_722_204_914) do
+# ActiveRecord::Schema.define(version: 2019_07_22_204914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -53,4 +54,5 @@ ActiveRecord::Schema.define(version: 20_190_722_204_914) do
 
   add_foreign_key 'ratings', 'users', column: 'developer_id'
   add_foreign_key 'ratings', 'users', column: 'mentor_id'
+
 end
