@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SingleCategorty> renders without crashing 1`] = `
+<div
+  className="singleCategory"
+>
+  <h2
+    id="score"
+  >
+    5
+  </h2>
+  <h2
+    id="category_name"
+  >
+     
+    Purple
+  </h2>
+</div>
+`;
