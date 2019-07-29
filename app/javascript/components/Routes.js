@@ -27,7 +27,7 @@ class Routes extends React.Component {
         />
         <Route
           exact
-          path={profUrl}
+          path="/staticprofile/:unique_url"
           render={props => <StaticProfile {...props} />}
         />
       </Router>

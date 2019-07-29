@@ -42,7 +42,7 @@ class Profile extends React.Component {
     const host = window.location.origin;
 
     // local host will change on deployment
-    const myUrl = `${host}/profile/`;
+    const myUrl = `${host}/staticprofile/`;
 
     return (
       <div className="profile">
