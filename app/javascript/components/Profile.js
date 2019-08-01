@@ -1,33 +1,39 @@
 import React from "react";
+
 import AllCategories from "./AllCategories";
-import { oneUser } from "./API/api";
-import { myRatings } from "./API/api";
+import { myRatings, oneUser } from "./API/api";
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: [],
-      myRatings: []
+      myRatings: [],
+      user: []
     };
   }
 
+  componentWillMount() {
+    this.renderingFunction();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { match } = this.props;
+
+    if (match.params.id !== prevProps.match.params.id) {
+      this.renderingFunction();
+    }
+  }
+
   renderingFunction() {
-    let id = this.props.match.params.id;
+    const { match } = this.props;
+    const { id } = match.params;
+
     oneUser(id).then(APIuser => {
       this.setState({ user: APIuser });
     });
     myRatings(id).then(APIrating => {
       this.setState({ myRatings: APIrating });
     });
-  }
-  componentWillMount() {
-    this.renderingFunction();
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params.id !== prevProps.match.params.id) {
-      this.renderingFunction();
-    }
   }
 
   render() {
@@ -36,7 +42,7 @@ class Profile extends React.Component {
     const host = window.location.origin;
 
     // local host will change on deployment
-    const my_url = `${host}/profile/`;
+    const myUrl = `${host}/staticprofile/`;
 
     return (
       <div className="profile">
@@ -47,13 +53,21 @@ class Profile extends React.Component {
               {user.first_name} {user.last_name}
             </h1>
             <h2 className="card-info" id="email">
-              ✉️ {user.email}
+              <span aria-label="envelope" role="img">
+                {" "}
+                ✉️
+              </span>{" "}
+              {user.email}
             </h2>
             <h2 className="card-info" id="timezone">
-              🌐 {user.time_zone}
+              <span aria-label="globe" role="img">
+                {" "}
+                🌐
+              </span>{" "}
+              {user.time_zone}
             </h2>
             <h2 className="card-info" id="url">
-              {my_url}
+              {myUrl}
               <br />
               {user.unique_url}
             </h2>

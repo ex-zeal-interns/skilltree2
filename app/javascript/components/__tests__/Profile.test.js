@@ -1,24 +1,26 @@
-import React from "react";
-import Profile from "../Profile";
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import React from "react";
+
 import AllCategories from "../AllCategories";
+import Profile from "../Profile";
 import "whatwg-fetch";
 
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
 
 describe("<Profile>", () => {
   const profile = {
+    email: "john@example.com",
     firstname: "John",
     lastname: "Doe",
-    email: "john@example.com",
     timezone: "UTC",
     url: "iou22o38f4"
   };
 
   const wrapper = shallow(
-    <Profile profile={profile} match={{ params: { id: 1 } }} />
+    <Profile match={{ params: { id: 1 } }} profile={profile} />
   );
+
   it("renders corretly", () => {
     expect(wrapper).toMatchSnapshot();
   });

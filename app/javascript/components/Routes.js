@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import StaticProfile from "./StaticProfile";
+
 import Profile from "./Profile";
+import StaticProfile from "./StaticProfile";
 
 class Routes extends React.Component {
   constructor(props) {
@@ -20,13 +21,13 @@ class Routes extends React.Component {
     return (
       <Router>
         <Route
-          path="/profile/:id"
           exact
+          path="/profile/:id"
           render={props => <Profile {...props} />}
         />
         <Route
-          path={profUrl}
           exact
+          path="/staticprofile/:unique_url"
           render={props => <StaticProfile {...props} />}
         />
       </Router>

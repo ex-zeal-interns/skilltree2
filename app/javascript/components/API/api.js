@@ -1,17 +1,23 @@
-let oneUser = function(id) {
+export const oneUser = id => {
   return fetch(`/user/${id}.json`).then(resp => {
-    let json = resp.json();
-    return json;
+    return resp.json();
   });
 };
 
-export { oneUser };
-
-let myRatings = function(id) {
+export const myRatings = id => {
   return fetch(`/myratings/${id}.json`).then(resp => {
-    let json = resp.json();
-    return json;
+    return resp.json();
   });
 };
 
-export { myRatings };
+export const oneStaticUser = unique_url => {
+  return fetch(`/staticuser/${unique_url}.json`).then(resp => {
+    return resp.json();
+  });
+};
+
+export const myStaticRatings = unique_url => {
+  return fetch(`/mystaticratings/${unique_url}.json`).then(resp => {
+    return resp.json();
+  });
+};
