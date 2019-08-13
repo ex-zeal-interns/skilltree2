@@ -76,3 +76,21 @@ rating3.mentor_id = 3
 rating3.developer_id = 3
 rating3.category_id = 1
 rating3.save!
+
+relationship = Relationship.new
+relationship.mentor_id = 1
+relationship.developer_id = 2
+relationship.status = 1
+relationship.save!
+
+relationship2 = Relationship.new
+relationship2.mentor_id = 1
+relationship2.developer_id = 3
+relationship2.status = 2
+relationship2.save!
+
+relationship3 = Relationship.new
+relationship3.mentor_id = 3
+relationship3.developer_id = 2
+relationship3.status = 2
+relationship3.save!

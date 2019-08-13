@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :relationship do
+    
+  end
+
   factory :rating do
     score { 5 }
     mentor_id { 1 }
