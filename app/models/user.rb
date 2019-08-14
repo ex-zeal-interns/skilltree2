@@ -19,4 +19,12 @@ class User < ApplicationRecord
   has_many :developer_ratings,
            class_name: 'rating',
            foreign_key: 'developer_ratings_id'
+
+  has_many :mentor_relationships,
+           class_name: 'relationship',
+           foreign_key: 'mentor_relationships_id'
+
+  has_many :developer_relationships,
+           class_name: 'relationship',
+           foreign_key: 'developer_relationships_id'
 end
