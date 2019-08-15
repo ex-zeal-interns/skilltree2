@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-import Profilepic from "./profilepic.jpeg";
+import Profilepic from "./pics/profilepic.jpeg";
 
 ///fetches
 import { myMentors } from "./API/api";
@@ -19,7 +19,8 @@ class MentorCard extends React.Component {
   }
 
   fetchData() {
-    myMentors().then(APImentors => {
+    const { mentorId } = this.props;
+    myMentors(mentorId).then(APImentors => {
       this.setState({
         mentors: APImentors
       });
@@ -52,7 +53,7 @@ class MentorCard extends React.Component {
     });
     return (
       <div className="allcards">
-        <h1>My Mentors</h1>
+        {mentors.length > 0 && <h1>My Mentors</h1>}
         <div className="usercards">{myMentors}</div>
       </div>
     );

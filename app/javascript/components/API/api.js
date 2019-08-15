@@ -37,14 +37,49 @@ export const allCategories = () => {
 
 //////mentors and developers
 
-export const myMentors = () => {
-  return fetch(`/mymentors`).then(resp => {
+export const myMentors = mentorId => {
+  return fetch(`/mymentors/${mentorId}`).then(resp => {
     return resp.json();
   });
 };
 
-export const myDevelopers = () => {
-  return fetch(`/mydevelopers`).then(resp => {
+export const myDevelopers = devId => {
+  return fetch(`/mydevelopers/${devId}`).then(resp => {
     return resp.json();
+  });
+};
+
+export const pendingMentors = () => {
+  return fetch(`/pendingmentors`).then(resp => {
+    return resp.json();
+  });
+};
+export const pendingDevelopers = () => {
+  return fetch(`/pendingdevelopers`).then(resp => {
+    return resp.json();
+  });
+};
+export const pendingMentorIds = () => {
+  return fetch(`/pendingmentorids`).then(resp => {
+    return resp.json();
+  });
+};
+export const pendingDeveloperIds = () => {
+  return fetch(`/pendingdeveloperids`).then(resp => {
+    return resp.json();
+  });
+};
+
+export const createMentor = function(mentorparams, token) {
+  return fetch(`/relationships`, {
+    body: JSON.stringify(mentorparams),
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token
+    },
+    method: "POST"
+  }).then(resp => {
+    let json = resp.json();
+    return json;
   });
 };

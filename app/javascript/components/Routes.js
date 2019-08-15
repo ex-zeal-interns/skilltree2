@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+////pages
+import Pendings from "./Pendings";
 import Profile from "./Profile";
 import RankMyself from "./RankMyself";
 import StaticProfile from "./StaticProfile";
@@ -11,7 +13,9 @@ function Routes({ current_user, token }) {
       <Route
         exact
         path="/profile/:id"
-        render={props => <Profile {...props} current_user={current_user} />}
+        render={props => (
+          <Profile {...props} current_user={current_user} token={token} />
+        )}
       />
       <Route
         exact
@@ -25,6 +29,7 @@ function Routes({ current_user, token }) {
           <RankMyself {...props} current_user={current_user} token={token} />
         )}
       />
+      <Route exact path="/pendings" render={props => <Pendings {...props} />} />
     </Router>
   );
 }

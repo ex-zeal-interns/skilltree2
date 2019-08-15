@@ -1,6 +1,7 @@
 import React from "react";
 
 import AllCategories from "./AllCategories";
+
 import { myLastRating, oneUser } from "./API/api";
 
 class StaticProfile extends React.Component {

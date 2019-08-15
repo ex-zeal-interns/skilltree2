@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-import Profilepic from "./profilepic.jpeg";
+import Profilepic from "./pics/profilepic.jpeg";
 
 ///fetches
 import { myDevelopers } from "./API/api";
@@ -19,7 +19,8 @@ class DevCard extends React.Component {
   }
 
   fetchData() {
-    myDevelopers().then(APIdevelopers => {
+    const { devId } = this.props;
+    myDevelopers(devId).then(APIdevelopers => {
       this.setState({
         developers: APIdevelopers
       });
@@ -52,7 +53,7 @@ class DevCard extends React.Component {
     });
     return (
       <div className="allcards">
-        <h1>My Developers</h1>
+        {developers.length > 0 && <h1>My Developers</h1>}
         <div className="usercards">{myDevelopers}</div>
       </div>
     );

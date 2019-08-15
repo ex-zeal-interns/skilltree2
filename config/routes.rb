@@ -7,11 +7,15 @@ Rails.application.routes.draw do
 
   resources :relationships
     get 'pendingmentors' => 'relationships#pending_mentors'
-    get 'mymentors' => 'relationships#my_mentors'
+    get 'pendingmentorids' => 'relationships#pending_mentors_ids'
+    get 'mymentors/:id' => 'relationships#my_mentors'
     get 'pendingdevelopers' => 'relationships#pending_developers'
-    get 'mydevelopers' => 'relationships#my_developers'
+    get 'pendingdeveloperids' => 'relationships#pending_developers_ids'
+    get 'mydevelopers/:id' => 'relationships#my_developers'
+    post 'creatementor' => 'relationships#create_mentor'
 
   resources :categories
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   devise_scope :user do

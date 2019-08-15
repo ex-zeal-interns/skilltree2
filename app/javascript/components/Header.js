@@ -1,6 +1,6 @@
 import React from "react";
 
-import Logo from "./logo.png";
+import Logo from "./pics/logo.png";
 
 function Header({ logged_in, sign_out_path, sign_in_path, current_user }) {
   return (

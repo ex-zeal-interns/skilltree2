@@ -8,7 +8,13 @@ import MentorCard from "./MentorCard";
 import DevCard from "./DevCard";
 
 //////fetches
-import { myLastRating, oneUser } from "./API/api";
+import {
+  createMentor,
+  myLastRating,
+  oneUser,
+  pendingMentorIds,
+  pendingDeveloperIds
+} from "./API/api";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -16,8 +22,18 @@ class Profile extends React.Component {
     this.state = {
       myRatings: [],
       user: [],
-      upcaseName: ""
+      upcaseName: "",
+      pendingMentors: [],
+      pendingDevs: [],
+
+      request: {
+        mentor_id: "",
+        developer_id: "",
+        status: 1
+      }
     };
+    this.handleDevRequest = this.handleDevRequest.bind(this);
+    this.handleMentorRequest = this.handleMentorRequest.bind(this);
   }
 
   componentWillMount() {
@@ -42,21 +58,65 @@ class Profile extends React.Component {
         user: APIuser
       });
     });
+    pendingMentorIds().then(APIpendingMentors => {
+      this.setState({ pendingMentors: APIpendingMentors });
+    });
+    pendingDeveloperIds().then(APIpendingDevs => {
+      this.setState({ pendingDevs: APIpendingDevs });
+    });
     myLastRating(id).then(APIrating => {
       this.setState({ myRatings: APIrating });
     });
   }
 
+  handleMentorRequest() {
+    const { user, request } = this.state;
+    const { current_user, token } = this.props;
+    let mentorRequest = request;
+    mentorRequest.mentor_id = user.id;
+    mentorRequest.developer_id = current_user.id;
+    this.setState({ request: mentorRequest });
+    let params = this.state.request;
+    createMentor(this.state.request, token).then(
+      alert("Request Sent"),
+      window.location.reload()
+    );
+  }
+
+  handleDevRequest() {
+    const { user, request } = this.state;
+    const { current_user, token } = this.props;
+    let mentorRequest = request;
+    mentorRequest.mentor_id = current_user.id;
+    mentorRequest.developer_id = user.id;
+    this.setState({ request: mentorRequest });
+    let params = this.state.request;
+    createMentor(this.state.request, token).then(
+      alert("Request Sent"),
+      window.location.reload()
+    );
+  }
+
   render() {
-    const { user, myRatings, upcaseName } = this.state;
+    const {
+      user,
+      myRatings,
+      upcaseName,
+      pendingDevs,
+      pendingMentors
+    } = this.state;
     const { current_user } = this.props;
     // coming from fetch of profile (find where(url = {url}))
     const host = window.location.origin;
 
     // local host will change on deployment
+    //string interp variables
     const myUrl = `${host}/staticprofile/`;
     const rankUrl = `/rankmyself/${user.id}`;
     const headerName = `${user.first_name}'s`;
+
+    console.log(pendingDevs);
+    console.log(pendingMentors);
 
     return (
       <div className="profile">
@@ -78,7 +138,9 @@ class Profile extends React.Component {
         <div className="card">
           <div className="card-content">
             <h1 className="card-info" id="fullname">
-              {user.first_name} {user.last_name}
+              {user.first_name}
+              <br />
+              <br /> {user.last_name}
             </h1>
             <h2 className="card-info" id="email">
               <span aria-label="envelope" role="img">
@@ -101,9 +163,32 @@ class Profile extends React.Component {
           <div className="categories">
             <AllCategories myRatings={myRatings} />
           </div>
+
+          <div className="mentorbuttons">
+            {current_user.id == user.id && (
+              <button>
+                <a href="/pendings">View Requests</a>
+              </button>
+            )}
+            {current_user.id != user.id &&
+              !pendingDevs.includes(user.id) &&
+              !pendingMentors.includes(user.id) &&
+              current_user.mentor_status == 1 && (
+                <button onClick={this.handleDevRequest}>
+                  Be {headerName} Mentor
+                </button>
+              )}
+            {current_user.id != user.id &&
+              !pendingDevs.includes(user.id) &&
+              !pendingMentors.includes(user.id) && (
+                <button onClick={this.handleMentorRequest}>
+                  Be {headerName} Mentee
+                </button>
+              )}
+          </div>
         </div>
-        <MentorCard />
-        <DevCard />
+        <MentorCard mentorId={this.props.match.params.id} />
+        <DevCard devId={this.props.match.params.id} />
       </div>
     );
   }

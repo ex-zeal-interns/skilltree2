@@ -213,7 +213,7 @@ input:checked ~ .checkmark:after {
   grid-template-columns: 20% 60% 20%;
   grid-template-rows: 180px 250px;
   grid-template-areas:
-    "padding1 zealLogo padding2 "
+    "padding1 zealLogo padding2"
     "padding1 form padding2";
 }
 
@@ -223,7 +223,7 @@ input:checked ~ .checkmark:after {
   grid-template-columns: 20% 60% 20%;
   grid-template-rows: 180px 250px;
   grid-template-areas:
-    "padding1 zealLogo padding2 "
+    "padding1 zealLogo padding2"
     "padding1 form padding2";
 }
 
@@ -446,10 +446,6 @@ input:checked ~ .checkmark:after {
   background-color: #f2f2f2;
 }
 .profile .card {
-  display: grid;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: auto;
-  grid-template-areas: "card categories";
   padding: 29px 40px 20px;
   border-style: none none solid;
   border-width: 1px 1px 6px;
@@ -458,6 +454,12 @@ input:checked ~ .checkmark:after {
   background-color: #fff;
   box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.02),
     0 29px 21px -20px rgba(0, 0, 0, 0.14);
+  display: grid;
+  grid-template-columns: 25% 55% 20%;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "card categories buttons"
+    "card categories .";
 }
 .profile .header-area {
   display: grid;
@@ -495,6 +497,8 @@ input:checked ~ .checkmark:after {
   margin-bottom: 10px;
   color: #333;
   font-weight: 400;
+  word-wrap: break-word;
+  word-wrap: normal;
 }
 #email,
 #timezone,
@@ -520,6 +524,28 @@ input:checked ~ .checkmark:after {
 }
 #category_name {
   grid-area: category_name;
+}
+.mentorbuttons {
+  grid-area: buttons;
+}
+.mentorbuttons button {
+  height: 50px;
+  border-radius: 50px;
+  background-color: #ffb648;
+  color: white;
+  font-size: 20px;
+  width: auto;
+  padding-left: 13px;
+  padding-right: 13px;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.mentorbuttons a {
+  text-decoration: none;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 ////usercards
@@ -576,6 +602,88 @@ input:checked ~ .checkmark:after {
   margin-bottom: 45px;
 }
 .usercard .info p {
+  margin-top: -30px;
+  color: #808080;
+}
+
+/////////pending cards
+
+.pendings {
+  margin-left: -30px;
+  margin-right: -60px;
+  margin-bottom: 40px;
+}
+.pendings h1 {
+  margin: 10px;
+  margin-top: 45px;
+  margin-bottom: 25px;
+  margin-left: 50px;
+}
+.usercards {
+  display: flex;
+  flex-wrap: wrap;
+}
+.pendingcard {
+  width: 30%;
+  margin-top: 10px;
+  margin-right: 40px;
+  display: grid;
+  grid-template-columns: 20% 10% 50% 20%;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "image . info button"
+    "image . info .";
+  padding: 29px 0px 20px;
+  border-style: none none solid;
+  border-width: 1px 1px 6px;
+  border-color: #dedede #dedede #ffb648;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.02),
+    0 29px 21px -20px rgba(0, 0, 0, 0.14);
+}
+.pendingcard .cardpicture {
+  grid-area: image;
+  position: relative;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  margin-left: -30%;
+}
+.pendingcard .info {
+  grid-area: info;
+}
+.pendingcard .buttons {
+  grid-area: button;
+  margin-right: 20px;
+  margin-top: -15px;
+}
+.pendingcard .buttons button {
+  border-radius: 50px;
+  border-style: none;
+  background-color: #ffb648;
+  color: white;
+  width: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-bottom: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+.pendingcard .buttons .reject {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.pendingcard .info h5 {
+  color: #adadad;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+.pendingcard .info h2 {
+  margin-bottom: 45px;
+}
+.pendingcard .info p {
   margin-top: -30px;
   color: #808080;
 }
