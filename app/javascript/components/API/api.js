@@ -70,7 +70,7 @@ export const pendingDeveloperIds = () => {
   });
 };
 
-export const createMentor = function(mentorparams, token) {
+export const createRelationship = function(mentorparams, token) {
   return fetch(`/relationships`, {
     body: JSON.stringify(mentorparams),
     headers: {

@@ -29,7 +29,13 @@ function Routes({ current_user, token }) {
           <RankMyself {...props} current_user={current_user} token={token} />
         )}
       />
-      <Route exact path="/pendings" render={props => <Pendings {...props} />} />
+      <Route
+        exact
+        path="/pendings"
+        render={props => (
+          <Pendings {...props} current_user={current_user} token={token} />
+        )}
+      />
     </Router>
   );
 }

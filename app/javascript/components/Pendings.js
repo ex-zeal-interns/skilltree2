@@ -3,15 +3,36 @@ import React from "react";
 import Profilepic from "./pics/profilepic.jpeg";
 
 ////fetches
-import { pendingDevelopers, pendingMentors } from "./API/api";
+import {
+  pendingDevelopers,
+  pendingMentors,
+  createRelationship
+} from "./API/api";
 
 class Pendings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       pendingDevs: [],
-      pendingMentors: []
+      pendingMentors: [],
+
+      accept: {
+        mentor_id: "",
+        developer_id: "",
+        status: 2
+      },
+
+      reject: {
+        mentor_id: "",
+        developer_id: "",
+        status: 3
+      }
     };
+
+    this.handleMentorAccept = this.handleMentorAccept.bind(this);
+    this.handleMentorReject = this.handleMentorReject.bind(this);
+    this.handleDevAccept = this.handleDevAccept.bind(this);
+    this.handleDevReject = this.handleDevReject.bind(this);
   }
 
   componentWillMount() {
@@ -27,11 +48,54 @@ class Pendings extends React.Component {
     });
   }
 
-  handleAccept() {
-    alert("Accepted");
+  handleMentorAccept() {
+    const { accept } = this.state;
+    const { token } = this.props;
+    let acceptRelationship = accept;
+    acceptRelationship.mentor_id = user.id;
+    acceptRelationship.developer_id = current_user.id;
+    this.setState({ accept: acceptRelationship });
+    createRelationship(this.state.accept, token).then(
+      alert("Mentor Accepted"),
+      window.location.reload()
+    );
   }
-  handleReject() {
-    alert("Reject");
+  handleMentorReject() {
+    const { accept } = this.state;
+    const { token } = this.props;
+    let acceptRelationship = accept;
+    acceptRelationship.mentor_id = user.id;
+    acceptRelationship.developer_id = current_user.id;
+    this.setState({ reject: rejectRelationship });
+    createRelationship(this.state.reject, token).then(
+      alert("Mentor Rejected"),
+      window.location.reload()
+    );
+  }
+
+  handleDevAccept() {
+    const { accept } = this.state;
+    const { token } = this.props;
+    let acceptRelationship = accept;
+    acceptRelationship.mentor_id = current_user.id;
+    acceptRelationship.developer_id = user.id;
+    this.setState({ accept: acceptRelationship });
+    createRelationship(this.state.accept, token).then(
+      alert("Developer Accepted"),
+      window.location.reload()
+    );
+  }
+  handleDevReject() {
+    const { accept } = this.state;
+    const { token } = this.props;
+    let acceptRelationship = accept;
+    acceptRelationship.mentor_id = current_user.id;
+    acceptRelationship.developer_id = user.id;
+    this.setState({ reject: rejectRelationship });
+    createRelationship(this.state.reject, token).then(
+      alert("Developer Rejected"),
+      window.location.reload()
+    );
   }
 
   render() {
@@ -56,10 +120,10 @@ class Pendings extends React.Component {
             </span>
           </div>
           <div className="buttons">
-            <button onClick={this.handleAccept} className="accept">
+            <button onClick={this.handleMentorAccept} className="accept">
               Accept
             </button>
-            <button onClick={this.handleReject} className="reject">
+            <button onClick={this.handleMentorReject} className="reject">
               Reject
             </button>
           </div>
@@ -86,10 +150,10 @@ class Pendings extends React.Component {
             </span>
           </div>
           <div className="buttons">
-            <button onClick={this.handleAccept} className="accept">
+            <button onClick={this.handleDevAccept} className="accept">
               Accept
             </button>
-            <button onClick={this.handleReject} className="reject">
+            <button onClick={this.handleDevReject} className="reject">
               Reject
             </button>
           </div>

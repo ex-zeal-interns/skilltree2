@@ -9,7 +9,7 @@ import DevCard from "./DevCard";
 
 //////fetches
 import {
-  createMentor,
+  createRelationship,
   myLastRating,
   oneUser,
   pendingMentorIds,
@@ -76,8 +76,7 @@ class Profile extends React.Component {
     mentorRequest.mentor_id = user.id;
     mentorRequest.developer_id = current_user.id;
     this.setState({ request: mentorRequest });
-    let params = this.state.request;
-    createMentor(this.state.request, token).then(
+    createRelationship(this.state.request, token).then(
       alert("Request Sent"),
       window.location.reload()
     );
@@ -90,8 +89,7 @@ class Profile extends React.Component {
     mentorRequest.mentor_id = current_user.id;
     mentorRequest.developer_id = user.id;
     this.setState({ request: mentorRequest });
-    let params = this.state.request;
-    createMentor(this.state.request, token).then(
+    createRelationship(this.state.request, token).then(
       alert("Request Sent"),
       window.location.reload()
     );
