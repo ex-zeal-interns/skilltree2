@@ -1,60 +1,61 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import Profilepic from "./pics/profilepic.jpeg";
-
-///fetches
-import { myDevelopers } from "./API/api";
 
 class DevCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      developers: []
-    };
+    this.state = {};
   }
 
-  componentWillMount() {
-    this.fetchData();
-  }
+  handleAccept = () => {
+    const { handleRelationship, developer, current_user } = this.props;
 
-  fetchData() {
-    const { devId } = this.props;
-    myDevelopers(devId).then(APIdevelopers => {
-      this.setState({
-        developers: APIdevelopers
-      });
-    });
-  }
+    handleRelationship(developer.developer.id, current_user.id, 2);
+  };
+
+  handleReject = () => {
+    const { handleRelationship, developer, current_user } = this.props;
+
+    handleRelationship(developer.developer.id, current_user.id, 3);
+  };
 
   render() {
-    const { developers } = this.state;
-    const myDevelopers = developers.map((developer, index) => {
-      return (
-        <div className="usercard">
-          <img src={Profilepic} className="cardpicture" />
-          <div className="info">
-            {(developer.developer.mentor_status == 1 && <h5>MENTOR</h5>) || (
-              <h5>DEVELOPER</h5>
-            )}
-            <h2>
-              {developer.developer.first_name} {developer.developer.last_name}
-            </h2>
-            <span aria-label="envelope" role="img">
-              <p>✉️{developer.developer.email}</p>
-            </span>
-            <br />
-            <span aria-label="envelope" role="img">
-              <p>🌐{developer.developer.time_zone}</p>
-            </span>
-          </div>
-        </div>
-      );
-    });
+    const { developer, pending } = this.props;
+
     return (
       <div className="allcards">
-        {developers.length > 0 && <h1>My Developers</h1>}
-        <div className="usercards">{myDevelopers}</div>
+        <div className="usercards">
+          {" "}
+          <div className="pendingcard">
+            <img src={Profilepic} className="cardpicture" />
+            <div className="info">
+              {(developer.developer.developer_status == 1 && (
+                <h5>MENTOR</h5>
+              )) || <h5>DEVELOPER</h5>}
+              <h2>
+                {developer.developer.first_name} {developer.developer.last_name}
+              </h2>
+              <span aria-label="envelope" role="img">
+                <p>✉️{developer.developer.email}</p>
+              </span>
+              <br />
+              <span aria-label="envelope" role="img">
+                <p>🌐{developer.developer.time_zone}</p>
+              </span>
+            </div>
+            {pending && (
+              <div className="buttons">
+                <button onClick={this.handleAccept} className="accept">
+                  Accept
+                </button>
+                <button onClick={this.handleReject} className="reject">
+                  Reject
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }

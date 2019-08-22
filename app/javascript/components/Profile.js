@@ -2,18 +2,17 @@ import React from "react";
 
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-/////parts
+///// parts
 import AllCategories from "./AllCategories";
-import MentorCard from "./MentorCard";
 import DevCard from "./DevCard";
-
-//////fetches
+import MentorCard from "./MentorCard";
+////// fetches
 import {
   createRelationship,
   myLastRating,
   oneUser,
-  pendingMentorIds,
-  pendingDeveloperIds
+  myMentors,
+  myDevelopers
 } from "./API/api";
 
 class Profile extends React.Component {
@@ -23,8 +22,9 @@ class Profile extends React.Component {
       myRatings: [],
       user: [],
       upcaseName: "",
-      pendingMentors: [],
-      pendingDevs: [],
+      mentors: [],
+      developers: [],
+      pending: false,
 
       request: {
         mentor_id: "",
@@ -58,25 +58,30 @@ class Profile extends React.Component {
         user: APIuser
       });
     });
-    pendingMentorIds().then(APIpendingMentors => {
-      this.setState({ pendingMentors: APIpendingMentors });
-    });
-    pendingDeveloperIds().then(APIpendingDevs => {
-      this.setState({ pendingDevs: APIpendingDevs });
-    });
     myLastRating(id).then(APIrating => {
       this.setState({ myRatings: APIrating });
+    });
+    myMentors(id).then(APImentors => {
+      this.setState({
+        mentors: APImentors
+      });
+    });
+    myDevelopers(id).then(APIdevelopers => {
+      this.setState({
+        developers: APIdevelopers
+      });
     });
   }
 
   handleMentorRequest() {
     const { user, request } = this.state;
     const { current_user, token } = this.props;
-    let mentorRequest = request;
+    const mentorRequest = request;
+
     mentorRequest.mentor_id = user.id;
     mentorRequest.developer_id = current_user.id;
     this.setState({ request: mentorRequest });
-    createRelationship(this.state.request, token).then(
+    createRelationship(request, token).then(
       alert("Request Sent"),
       window.location.reload()
     );
@@ -85,11 +90,12 @@ class Profile extends React.Component {
   handleDevRequest() {
     const { user, request } = this.state;
     const { current_user, token } = this.props;
-    let mentorRequest = request;
+    const mentorRequest = request;
+
     mentorRequest.mentor_id = current_user.id;
     mentorRequest.developer_id = user.id;
     this.setState({ request: mentorRequest });
-    createRelationship(this.state.request, token).then(
+    createRelationship(request, token).then(
       alert("Request Sent"),
       window.location.reload()
     );
@@ -101,7 +107,10 @@ class Profile extends React.Component {
       myRatings,
       upcaseName,
       pendingDevs,
-      pendingMentors
+      pendingMentors,
+      mentors,
+      developers,
+      pending
     } = this.state;
     const { current_user } = this.props;
     // coming from fetch of profile (find where(url = {url}))
@@ -113,8 +122,27 @@ class Profile extends React.Component {
     const rankUrl = `/rankmyself/${user.id}`;
     const headerName = `${user.first_name}'s`;
 
-    console.log(pendingDevs);
-    console.log(pendingMentors);
+    const myMentors = mentors.map((mentor, index) => {
+      return (
+        <MentorCard
+          mentor={mentor}
+          current_user={current_user}
+          handleRelationship={this.handleRelationship}
+          pending={pending}
+        />
+      );
+    });
+
+    const myDevelopers = developers.map((developer, index) => {
+      return (
+        <DevCard
+          developer={developer}
+          current_user={current_user}
+          handleRelationship={this.handleRelationship}
+          pending={pending}
+        />
+      );
+    });
 
     return (
       <div className="profile">
@@ -169,24 +197,26 @@ class Profile extends React.Component {
               </button>
             )}
             {current_user.id != user.id &&
-              !pendingDevs.includes(user.id) &&
-              !pendingMentors.includes(user.id) &&
+              !developers.includes(user.id) &&
+              !mentors.includes(user.id) &&
               current_user.mentor_status == 1 && (
                 <button onClick={this.handleDevRequest}>
                   Be {headerName} Mentor
                 </button>
               )}
             {current_user.id != user.id &&
-              !pendingDevs.includes(user.id) &&
-              !pendingMentors.includes(user.id) && (
+              !developers.includes(user.id) &&
+              !mentors.includes(user.id) && (
                 <button onClick={this.handleMentorRequest}>
                   Be {headerName} Mentee
                 </button>
               )}
           </div>
         </div>
-        <MentorCard mentorId={this.props.match.params.id} />
-        <DevCard devId={this.props.match.params.id} />
+        {mentors.length > 0 && <h1>My Mentors</h1>}
+        {myMentors}
+        {developers.length > 0 && <h1>My Developers</h1>}
+        {myDevelopers}
       </div>
     );
   }
