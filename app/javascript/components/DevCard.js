@@ -9,15 +9,15 @@ class DevCard extends React.Component {
   }
 
   handleAccept = () => {
-    const { handleRelationship, developer, current_user } = this.props;
+    const { handleRelationship, developer } = this.props;
 
-    handleRelationship(developer.developer.id, current_user.id, 2);
+    handleRelationship(developer.id, 2);
   };
 
   handleReject = () => {
-    const { handleRelationship, developer, current_user } = this.props;
+    const { handleRelationship, developer } = this.props;
 
-    handleRelationship(developer.developer.id, current_user.id, 3);
+    handleRelationship(developer.id, 3);
   };
 
   render() {

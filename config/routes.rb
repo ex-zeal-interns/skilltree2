@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'pendingdeveloperids' => 'relationships#pending_developers_ids'
     get 'mydevelopers/:id' => 'relationships#my_developers'
     post 'creatementor' => 'relationships#create_mentor'
+    patch 'updaterelationship/:id' => 'relationships#update_relationship'
 
   resources :categories
 

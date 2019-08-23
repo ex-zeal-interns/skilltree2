@@ -8,7 +8,8 @@ import Profilepic from "./pics/profilepic.jpeg";
 import {
   pendingDevelopers,
   pendingMentors,
-  createRelationship
+  createRelationship,
+  updateRelationship
 } from "./API/api";
 
 class Pendings extends React.Component {
@@ -36,17 +37,10 @@ class Pendings extends React.Component {
     });
   }
 
-  handleRelationship = (mentorId, developerId, newStatus) => {
+  handleRelationship = (newId, newstatus) => {
     const { token } = this.props;
-
-    const newRelationship = {
-      developer_id: developerId,
-      mentor_id: mentorId,
-      status: newStatus
-    };
-
-    createRelationship(newRelationship, token).then(
-      alert("Developer Accepted"),
+    updateRelationship(newId, newstatus, token).then(
+      alert("Updated Relationship"),
       window.location.reload()
     );
   };

@@ -10,6 +10,12 @@ class RelationshipsController < ApplicationController
     end
   end
 
+  def update_relationship
+    @relationship = Relationship.find(params[:id])
+    @relationship.update(relationship_params)
+    render json: @relationship
+  end
+
 # mentors
   def pending_mentors
     @mentors = []

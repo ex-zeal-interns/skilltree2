@@ -10,14 +10,13 @@ class MentorCard extends React.Component {
 
   handleAccept = () => {
     const { handleRelationship, mentor, current_user } = this.props;
-
-    handleRelationship(current_user.id, mentor.mentor.id, 2);
+    handleRelationship(mentor.id, 2);
   };
 
   handleReject = () => {
     const { handleRelationship, mentor, current_user } = this.props;
 
-    handleRelationship(current_user.id, mentor.mentor.id, 3);
+    handleRelationship(mentor.id, 3);
   };
 
   render() {

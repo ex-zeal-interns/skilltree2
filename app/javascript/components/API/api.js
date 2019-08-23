@@ -83,3 +83,17 @@ export const createRelationship = function(mentorparams, token) {
     return json;
   });
 };
+
+export const updateRelationship = function(id, status, token) {
+  return fetch(`/updaterelationship/${id}`, {
+    body: JSON.stringify({ status: status }),
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token
+    },
+    method: "PATCH"
+  }).then(resp => {
+    let json = resp.json();
+    return json;
+  });
+};
