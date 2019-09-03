@@ -10,11 +10,14 @@ import MentorCard from "./MentorCard";
 import {
   createRelationship,
   myLastRating,
+  myLastMentorRating,
   oneUser,
   myMentors,
   myDevelopers,
   mentorIds,
-  developerIds
+  developerIds,
+  pendingMentorIds,
+  pendingDeveloperIds
 } from "./API/api";
 
 class Profile extends React.Component {
@@ -22,11 +25,14 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       myRatings: [],
+      myMentorRatings: [],
       user: [],
       upcaseName: "",
       mentors: [],
+      pendingMentorIds: [],
       mentorIds: [],
       developers: [],
+      pendingDeveloperIds: [],
       developerIds: [],
       pending: false,
 
@@ -66,6 +72,9 @@ class Profile extends React.Component {
     myLastRating(id).then(APIrating => {
       this.setState({ myRatings: APIrating });
     });
+    myLastMentorRating(id).then(APIrating => {
+      this.setState({ myMentorRatings: APIrating });
+    });
     myMentors(id).then(APImentors => {
       this.setState({
         mentors: APImentors
@@ -84,6 +93,16 @@ class Profile extends React.Component {
     developerIds().then(APIdeveloperids => {
       this.setState({
         developerIds: APIdeveloperids
+      });
+    });
+    pendingMentorIds().then(APImentorids => {
+      this.setState({
+        pendingMentorIds: APImentorids
+      });
+    });
+    pendingDeveloperIds().then(APIdeveloperids => {
+      this.setState({
+        pendingDeveloperIds: APIdeveloperids
       });
     });
   }
@@ -122,9 +141,10 @@ class Profile extends React.Component {
     const {
       user,
       myRatings,
+      myMentorRatings,
       upcaseName,
-      pendingDevs,
-      pendingMentors,
+      pendingMentorIds,
+      pendingDeveloperIds,
       mentors,
       developers,
       pending,
@@ -175,9 +195,11 @@ class Profile extends React.Component {
         )) || (
           <div className="header-area">
             <h1 className="card-header">{headerName} Profile</h1>
-            <Link className="rank-btn-link" to={rankUrl}>
-              <h4>RANK {upcaseName}</h4>
-            </Link>
+            {developerIds.includes(user.id) && (
+              <Link className="rank-btn-link" to={rankUrl}>
+                <h4>RANK {upcaseName}</h4>
+              </Link>
+            )}
           </div>
         )}
         <div className="card">
@@ -206,7 +228,10 @@ class Profile extends React.Component {
             </h2>
           </div>
           <div className="categories">
-            <AllCategories myRatings={myRatings} />
+            <AllCategories
+              myRatings={myRatings}
+              myMentorRatings={myMentorRatings}
+            />
           </div>
 
           <div className="mentorbuttons">
@@ -217,24 +242,39 @@ class Profile extends React.Component {
             )}
             {current_user.id != user.id &&
               !developerIds.includes(user.id) &&
-              !mentorIds.includes(user.id) && (
+              !mentorIds.includes(user.id) &&
+              !pendingDeveloperIds.includes(user.id) &&
+              !pendingMentorIds.includes(user.id) && (
                 <button onClick={this.handleDevRequest}>
                   Be {headerName} Mentor
                 </button>
               )}
             {current_user.id != user.id &&
               !developerIds.includes(user.id) &&
-              !mentorIds.includes(user.id) && (
+              !mentorIds.includes(user.id) &&
+              !pendingDeveloperIds.includes(user.id) &&
+              !pendingMentorIds.includes(user.id) && (
                 <button onClick={this.handleMentorRequest}>
                   Be {headerName} Mentee
                 </button>
               )}
           </div>
         </div>
-        {mentors.length > 0 && <h1>My Mentors</h1>}
-        {myMentors}
-        {developers.length > 0 && <h1>My Developers</h1>}
-        {myDevelopers}
+        <div>
+          {" "}
+          {mentors.length > 0 && (
+            <div>
+              <h1 className="card-header">My Mentors</h1>
+              <div className="allcards">{myMentors}</div>
+            </div>
+          )}
+          {developers.length > 0 && (
+            <div>
+              <h1 className="card-header">My Developers</h1>
+              <div className="allcards">{myDevelopers}</div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

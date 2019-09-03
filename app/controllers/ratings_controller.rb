@@ -29,6 +29,18 @@ class RatingsController < ApplicationController
     render json: last_ratings_in_each_category
   end
 
+  def my_last_mentor_rating
+    last_ratings_in_each_category = []
+    user
+    Category.find_each do |category|
+      all_my_ratings = Rating.where('developer_id = ? and mentor_id != ? and category_id = ?',
+                                    user.id, user.id, category.id)
+                             .as_json(include: { mentor: {} })
+      all_my_ratings.length.positive? && last_ratings_in_each_category << all_my_ratings.last
+    end
+    render json: last_ratings_in_each_category
+  end
+
   def create
     rating = Rating.create(rating_params)
     if rating.valid?
