@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 
   resources :relationships
     get 'pendingmentors' => 'relationships#pending_mentors'
-    get 'pendingmentorids' => 'relationships#pending_mentors_ids'
+    get 'mentorids' => 'relationships#mentors_ids'
     get 'mymentors/:id' => 'relationships#my_mentors'
     get 'pendingdevelopers' => 'relationships#pending_developers'
-    get 'pendingdeveloperids' => 'relationships#pending_developers_ids'
+    get 'developerids' => 'relationships#developers_ids'
     get 'mydevelopers/:id' => 'relationships#my_developers'
     post 'creatementor' => 'relationships#create_mentor'
     patch 'updaterelationship/:id' => 'relationships#update_relationship'

@@ -12,7 +12,9 @@ import {
   myLastRating,
   oneUser,
   myMentors,
-  myDevelopers
+  myDevelopers,
+  mentorIds,
+  developerIds
 } from "./API/api";
 
 class Profile extends React.Component {
@@ -23,12 +25,15 @@ class Profile extends React.Component {
       user: [],
       upcaseName: "",
       mentors: [],
+      mentorIds: [],
       developers: [],
+      developerIds: [],
       pending: false,
 
       request: {
         mentor_id: "",
         developer_id: "",
+        sender_id: "",
         status: 1
       }
     };
@@ -71,6 +76,16 @@ class Profile extends React.Component {
         developers: APIdevelopers
       });
     });
+    mentorIds().then(APImentorids => {
+      this.setState({
+        mentorIds: APImentorids
+      });
+    });
+    developerIds().then(APIdeveloperids => {
+      this.setState({
+        developerIds: APIdeveloperids
+      });
+    });
   }
 
   handleMentorRequest() {
@@ -80,6 +95,7 @@ class Profile extends React.Component {
 
     mentorRequest.mentor_id = user.id;
     mentorRequest.developer_id = current_user.id;
+    mentorRequest.sender_id = current_user.id;
     this.setState({ request: mentorRequest });
     createRelationship(request, token).then(
       alert("Request Sent"),
@@ -93,6 +109,7 @@ class Profile extends React.Component {
     const mentorRequest = request;
 
     mentorRequest.mentor_id = current_user.id;
+    mentorRequest.sender_id = current_user.id;
     mentorRequest.developer_id = user.id;
     this.setState({ request: mentorRequest });
     createRelationship(request, token).then(
@@ -110,7 +127,9 @@ class Profile extends React.Component {
       pendingMentors,
       mentors,
       developers,
-      pending
+      pending,
+      developerIds,
+      mentorIds
     } = this.state;
     const { current_user } = this.props;
     // coming from fetch of profile (find where(url = {url}))
@@ -197,16 +216,15 @@ class Profile extends React.Component {
               </button>
             )}
             {current_user.id != user.id &&
-              !developers.includes(user.id) &&
-              !mentors.includes(user.id) &&
-              current_user.mentor_status == 1 && (
+              !developerIds.includes(user.id) &&
+              !mentorIds.includes(user.id) && (
                 <button onClick={this.handleDevRequest}>
                   Be {headerName} Mentor
                 </button>
               )}
             {current_user.id != user.id &&
-              !developers.includes(user.id) &&
-              !mentors.includes(user.id) && (
+              !developerIds.includes(user.id) &&
+              !mentorIds.includes(user.id) && (
                 <button onClick={this.handleMentorRequest}>
                   Be {headerName} Mentee
                 </button>

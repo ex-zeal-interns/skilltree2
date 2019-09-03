@@ -59,13 +59,13 @@ export const pendingDevelopers = () => {
     return resp.json();
   });
 };
-export const pendingMentorIds = () => {
-  return fetch(`/pendingmentorids`).then(resp => {
+export const mentorIds = () => {
+  return fetch(`/mentorids`).then(resp => {
     return resp.json();
   });
 };
-export const pendingDeveloperIds = () => {
-  return fetch(`/pendingdeveloperids`).then(resp => {
+export const developerIds = () => {
+  return fetch(`/developerids`).then(resp => {
     return resp.json();
   });
 };

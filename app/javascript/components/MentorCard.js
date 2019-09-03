@@ -20,7 +20,7 @@ class MentorCard extends React.Component {
   };
 
   render() {
-    const { mentor, pending } = this.props;
+    const { mentor, pending, current_user } = this.props;
 
     return (
       <div className="allcards">
@@ -43,7 +43,7 @@ class MentorCard extends React.Component {
                 <p>🌐{mentor.mentor.time_zone}</p>
               </span>
             </div>
-            {pending && (
+            {pending && current_user.id != mentor.sender_id && (
               <div className="buttons">
                 <button onClick={this.handleAccept} className="accept">
                   Accept
