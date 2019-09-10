@@ -70,6 +70,14 @@ export const developerIds = () => {
   });
 };
 
+export const mentorList = () => {
+  return fetch(`/allmentors`).then(resp => {
+    return resp.json();
+  });
+};
+
+////relationships
+
 export const createRelationship = function(mentorparams, token) {
   return fetch(`/relationships`, {
     body: JSON.stringify(mentorparams),

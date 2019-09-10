@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ////pages
+import MentorList from "./MentorList";
 import Pendings from "./Pendings";
 import Profile from "./Profile";
 import RankMyself from "./RankMyself";
@@ -35,6 +36,11 @@ function Routes({ current_user, token }) {
         render={props => (
           <Pendings {...props} current_user={current_user} token={token} />
         )}
+      />
+      <Route
+        exact
+        path="/mentorlist"
+        render={props => <MentorList {...props} current_user={current_user} />}
       />
     </Router>
   );

@@ -16,6 +16,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render json: user
   end
 
+  def all_mentors
+    @mentors = []
+    User.find_each do |mentor|
+      if mentor.mentor_status === 1
+        @mentors << mentor
+      end
+    end
+    render json: @mentors
+  end
+
+
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])

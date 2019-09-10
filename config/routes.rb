@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'user/:params' => 'users/registrations#one_user'
+    get 'allmentors' => 'users/registrations#all_mentors'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
