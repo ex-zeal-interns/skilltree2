@@ -4,29 +4,35 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 
 ///// parts
 import AllCategories from "./AllCategories";
-import DevCard from "./DevCard";
-import MentorCard from "./MentorCard";
-////// fetches
 import {
   createRelationship,
   myLastRating,
+  myLastMentorRating,
   oneUser,
   myMentors,
   myDevelopers,
   mentorIds,
-  developerIds
+  developerIds,
+  pendingMentorIds,
+  pendingDeveloperIds
 } from "./API/api";
+import DevCard from "./DevCard";
+import MentorCard from "./MentorCard";
+////// fetches
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       myRatings: [],
+      myMentorRatings: [],
       user: [],
       upcaseName: "",
       mentors: [],
+      pendingMentorIds: [],
       mentorIds: [],
       developers: [],
+      pendingDeveloperIds: [],
       developerIds: [],
       pending: false,
 
@@ -63,8 +69,14 @@ class Profile extends React.Component {
         user: APIuser
       });
     });
+    myLastMentorRating(id).then(APIrating => {
+      this.setState({ myMentorRatings: APIrating });
+    });
     myLastRating(id).then(APIrating => {
       this.setState({ myRatings: APIrating });
+    });
+    myLastMentorRating(id).then(APIrating => {
+      this.setState({ myMentorRatings: APIrating });
     });
     myMentors(id).then(APImentors => {
       this.setState({
@@ -84,6 +96,16 @@ class Profile extends React.Component {
     developerIds().then(APIdeveloperids => {
       this.setState({
         developerIds: APIdeveloperids
+      });
+    });
+    pendingMentorIds().then(APImentorids => {
+      this.setState({
+        pendingMentorIds: APImentorids
+      });
+    });
+    pendingDeveloperIds().then(APIdeveloperids => {
+      this.setState({
+        pendingDeveloperIds: APIdeveloperids
       });
     });
   }
@@ -122,9 +144,10 @@ class Profile extends React.Component {
     const {
       user,
       myRatings,
+      myMentorRatings,
       upcaseName,
-      pendingDevs,
-      pendingMentors,
+      pendingMentorIds,
+      pendingDeveloperIds,
       mentors,
       developers,
       pending,
@@ -163,78 +186,117 @@ class Profile extends React.Component {
       );
     });
 
+    const mentorList = mentors.map((relationship, index) => {
+      return relationship.mentor.id;
+    });
+    const developerList = developers.map((relationship, index) => {
+      return relationship.developer.id;
+    });
+    const accessList = [...mentorList, ...developerList];
+
     return (
       <div className="profile">
-        {(current_user.id === user.id && (
-          <div className="header-area">
-            <h1 className="card-header">My Profile</h1>
-            <Link className="rank-btn-link" to={rankUrl}>
-              <h4>RANK MYSELF</h4>
-            </Link>
-          </div>
-        )) || (
-          <div className="header-area">
-            <h1 className="card-header">{headerName} Profile</h1>
-            <Link className="rank-btn-link" to={rankUrl}>
-              <h4>RANK {upcaseName}</h4>
-            </Link>
+        {(user.privacy_status === 1 &&
+          current_user.id != user.id &&
+          !accessList.includes(current_user.id) && (
+            <div className="private_page">
+              <h1>{headerName} Account Is Private</h1>
+              {current_user.id != user.id &&
+                !developerIds.includes(user.id) &&
+                !mentorIds.includes(user.id) &&
+                current_user.mentor_status == 1 && (
+                  <button onClick={this.handleDevRequest}>
+                    Be {headerName} Mentor
+                  </button>
+                )}
+              {current_user.id != user.id &&
+                !developerIds.includes(user.id) &&
+                !mentorIds.includes(user.id) &&
+                user.mentor_status == 1 && (
+                  <button onClick={this.handleMentorRequest}>
+                    Be {headerName} Mentee
+                  </button>
+                )}
+            </div>
+          )) || (
+          <div>
+            {(current_user.id === user.id && (
+              <div className="header-area">
+                <h1 className="card-header">My Profile</h1>
+                <Link className="rank-btn-link" to={rankUrl}>
+                  <h4>RANK MYSELF</h4>
+                </Link>
+              </div>
+            )) || (
+              <div className="header-area">
+                <h1 className="card-header">{headerName} Profile</h1>
+                <Link className="rank-btn-link" to={rankUrl}>
+                  <h4>RANK {upcaseName}</h4>
+                </Link>
+              </div>
+            )}
+            <div className="card">
+              <div className="card-content">
+                <h1 className="card-info" id="fullname">
+                  {user.first_name}
+                  <br />
+                  <br /> {user.last_name}
+                </h1>
+                <h2 className="card-info" id="email">
+                  <span aria-label="envelope" role="img">
+                    ✉️
+                  </span>
+                  {user.email}
+                </h2>
+                <h2 className="card-info" id="timezone">
+                  <span aria-label="globe" role="img">
+                    🌐
+                  </span>
+                  {user.time_zone}
+                </h2>
+                <h2 className="card-info" id="url">
+                  {myUrl}
+                  <br />
+                  {user.unique_url}
+                </h2>
+              </div>
+              <div className="categories">
+                <AllCategories
+                  myRatings={myRatings}
+                  myMentorRatings={myMentorRatings}
+                />
+              </div>
+
+              <div className="mentorbuttons">
+                {current_user.id == user.id && (
+                  <button>
+                    <a href="/pendings">View Requests</a>
+                  </button>
+                )}
+                {current_user.id != user.id &&
+                  !developerIds.includes(user.id) &&
+                  !mentorIds.includes(user.id) &&
+                  current_user.mentor_status == 1 && (
+                    <button onClick={this.handleDevRequest}>
+                      Be {headerName} Mentor
+                    </button>
+                  )}
+                {current_user.id != user.id &&
+                  !developerIds.includes(user.id) &&
+                  !mentorIds.includes(user.id) &&
+                  user.mentor_status == 1 && (
+                    <button onClick={this.handleMentorRequest}>
+                      Be {headerName} Mentee
+                    </button>
+                  )}
+              </div>
+            </div>
+            {mentors.length > 0 && <h1>My Mentors</h1>}
+            {myMentors}
+            {developers.length > 0 && <h1>My Developers</h1>}
+            {myDevelopers}
           </div>
         )}
-        <div className="card">
-          <div className="card-content">
-            <h1 className="card-info" id="fullname">
-              {user.first_name}
-              <br />
-              <br /> {user.last_name}
-            </h1>
-            <h2 className="card-info" id="email">
-              <span aria-label="envelope" role="img">
-                ✉️
-              </span>
-              {user.email}
-            </h2>
-            <h2 className="card-info" id="timezone">
-              <span aria-label="globe" role="img">
-                🌐
-              </span>
-              {user.time_zone}
-            </h2>
-            <h2 className="card-info" id="url">
-              {myUrl}
-              <br />
-              {user.unique_url}
-            </h2>
-          </div>
-          <div className="categories">
-            <AllCategories myRatings={myRatings} />
-          </div>
-
-          <div className="mentorbuttons">
-            {current_user.id == user.id && (
-              <button>
-                <a href="/pendings">View Requests</a>
-              </button>
-            )}
-            {current_user.id != user.id &&
-              !developerIds.includes(user.id) &&
-              !mentorIds.includes(user.id) && (
-                <button onClick={this.handleDevRequest}>
-                  Be {headerName} Mentor
-                </button>
-              )}
-            {current_user.id != user.id &&
-              !developerIds.includes(user.id) &&
-              !mentorIds.includes(user.id) && (
-                <button onClick={this.handleMentorRequest}>
-                  Be {headerName} Mentee
-                </button>
-              )}
-          </div>
-        </div>
-        {mentors.length > 0 && <h1>My Mentors</h1>}
-        {myMentors}
-        {developers.length > 0 && <h1>My Developers</h1>}
-        {myDevelopers}
       </div>
     );
   }
