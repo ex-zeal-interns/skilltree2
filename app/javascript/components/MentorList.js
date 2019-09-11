@@ -2,15 +2,20 @@ import React from "react";
 
 import Profilepic from "./pics/profilepic.jpeg";
 
-import { mentorList } from "./API/api";
+import { mentorList, allCategories } from "./API/api";
 
 class MentorList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allCategories: [],
       mentors: [],
-      pending: false
+      pending: false,
+      filteredMentors: [],
+      clicked: false,
+      filteredCategory: "All"
     };
+    this.filterByCategory = this.filterByCategory.bind(this);
   }
 
   componentWillMount() {
@@ -23,13 +28,62 @@ class MentorList extends React.Component {
         mentors: APImentorList
       });
     });
+    allCategories().then(APIcategories => {
+      this.setState({
+        allCategories: APIcategories
+      });
+    });
+  }
+
+  filterByCategory(e) {
+    const { mentors } = this.state;
+    const filtered = mentors.filter(mentor => {
+      return (
+        mentor.mentor_ratings.filter(rating => {
+          if (rating.category_id == e.target.id && rating.score >= 5) {
+            return rating.category_id;
+          }
+        }).length > 0
+      );
+    });
+    console.log(filtered);
+    this.setState({
+      filteredMentors: filtered,
+      clicked: true,
+      filteredCategory: e.target.getAttribute("name")
+    });
   }
 
   render() {
     const { current_user } = this.props;
-    const { mentors, pending } = this.state;
-    const allMentors = mentors.map((mentor, index) => {
+    const {
+      filteredMentors,
+      pending,
+      allCategories,
+      mentors,
+      clicked,
+      filteredCategory
+    } = this.state;
+    const filter = allCategories.map(category => {
+      return (
+        <a
+          onClick={this.filterByCategory}
+          id={category.id}
+          name={category.category_name}
+          key={category.id}
+        >
+          <h2 id={category.id} name={category.category_name}>
+            {category.category_name}
+          </h2>
+        </a>
+      );
+    });
+    const mentorArray = clicked ? filteredMentors : mentors;
+
+    console.log(mentors);
+    const allMentors = mentorArray.map((mentor, index) => {
       const userLink = `profile/${mentor.id}`;
+
       if (current_user.id != mentor.id) {
         return (
           <div className="allcards">
@@ -70,7 +124,13 @@ class MentorList extends React.Component {
         );
       }
     });
-    return <div className="MentorList">{allMentors}</div>;
+    return (
+      <div className="MentorList">
+        <div>{filter}</div>
+        <h2>Mentors in {filteredCategory}</h2>
+        <div>{allMentors}</div>
+      </div>
+    );
   }
 }
 

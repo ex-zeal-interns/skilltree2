@@ -20,7 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @mentors = []
     User.find_each do |mentor|
       if mentor.mentor_status === 1
-        @mentors << mentor
+        @mentors << mentor.as_json(:include => {:mentor_ratings=>{:include => :category}, :developer_ratings=>{:include => :category} })
       end
     end
     render json: @mentors

@@ -4,24 +4,26 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 
 ///// parts
 import AllCategories from "./AllCategories";
-import DevCard from "./DevCard";
-import MentorCard from "./MentorCard";
-////// fetches
 import {
   createRelationship,
   myLastRating,
+  myLastMentorRating,
   oneUser,
   myMentors,
   myDevelopers,
   mentorIds,
   developerIds
 } from "./API/api";
+import DevCard from "./DevCard";
+import MentorCard from "./MentorCard";
+////// fetches
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       myRatings: [],
+      myMentorRatings: [],
       user: [],
       upcaseName: "",
       mentors: [],
@@ -62,6 +64,9 @@ class Profile extends React.Component {
         upcaseName: APIuser.first_name.toUpperCase(),
         user: APIuser
       });
+    });
+    myLastMentorRating(id).then(APIrating => {
+      this.setState({ myMentorRatings: APIrating });
     });
     myLastRating(id).then(APIrating => {
       this.setState({ myRatings: APIrating });
@@ -122,6 +127,7 @@ class Profile extends React.Component {
     const {
       user,
       myRatings,
+      myMentorRatings,
       upcaseName,
       pendingDevs,
       pendingMentors,
@@ -238,7 +244,10 @@ class Profile extends React.Component {
                 </h2>
               </div>
               <div className="categories">
-                <AllCategories myRatings={myRatings} />
+                <AllCategories
+                  myRatings={myRatings}
+                  myMentorRatings={myMentorRatings}
+                />
               </div>
 
               <div className="mentorbuttons">
