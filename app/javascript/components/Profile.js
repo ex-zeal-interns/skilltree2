@@ -12,7 +12,9 @@ import {
   myMentors,
   myDevelopers,
   mentorIds,
-  developerIds
+  developerIds,
+  pendingMentorIds,
+  pendingDeveloperIds
 } from "./API/api";
 import DevCard from "./DevCard";
 import MentorCard from "./MentorCard";
@@ -27,8 +29,10 @@ class Profile extends React.Component {
       user: [],
       upcaseName: "",
       mentors: [],
+      pendingMentorIds: [],
       mentorIds: [],
       developers: [],
+      pendingDeveloperIds: [],
       developerIds: [],
       pending: false,
 
@@ -71,6 +75,9 @@ class Profile extends React.Component {
     myLastRating(id).then(APIrating => {
       this.setState({ myRatings: APIrating });
     });
+    myLastMentorRating(id).then(APIrating => {
+      this.setState({ myMentorRatings: APIrating });
+    });
     myMentors(id).then(APImentors => {
       this.setState({
         mentors: APImentors
@@ -89,6 +96,16 @@ class Profile extends React.Component {
     developerIds().then(APIdeveloperids => {
       this.setState({
         developerIds: APIdeveloperids
+      });
+    });
+    pendingMentorIds().then(APImentorids => {
+      this.setState({
+        pendingMentorIds: APImentorids
+      });
+    });
+    pendingDeveloperIds().then(APIdeveloperids => {
+      this.setState({
+        pendingDeveloperIds: APIdeveloperids
       });
     });
   }
@@ -129,8 +146,8 @@ class Profile extends React.Component {
       myRatings,
       myMentorRatings,
       upcaseName,
-      pendingDevs,
-      pendingMentors,
+      pendingMentorIds,
+      pendingDeveloperIds,
       mentors,
       developers,
       pending,

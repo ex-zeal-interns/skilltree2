@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   resources :relationships
     get 'pendingmentors' => 'relationships#pending_mentors'
     get 'mentorids' => 'relationships#mentors_ids'
+    get 'pendingmentorids' => 'relationships#pending_mentor_ids'
     get 'mymentors/:id' => 'relationships#my_mentors'
     get 'pendingdevelopers' => 'relationships#pending_developers'
     get 'developerids' => 'relationships#developers_ids'
+    get 'pendingdeveloperids' => 'relationships#pending_developer_ids'
     get 'mydevelopers/:id' => 'relationships#my_developers'
     post 'creatementor' => 'relationships#create_mentor'
     patch 'updaterelationship/:id' => 'relationships#update_relationship'
