@@ -845,3 +845,27 @@ input:checked ~ .checkmark:after {
   color: white;
   margin-top: 10px;
 }
+
+//////private page
+.private_page {
+  text-align: center;
+}
+.private_page h1 {
+  text-align: center;
+  margin-top: 30px;
+}
+.private_page button {
+  border-radius: 50px;
+  border-style: none;
+  background-color: #ffb648;
+  color: white;
+  width: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 50px;
+  padding: 15px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 25px;
+  margin-left: 15px;
+}

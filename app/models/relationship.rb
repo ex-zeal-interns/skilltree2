@@ -6,4 +6,5 @@ class Relationship < ApplicationRecord
   belongs_to :developer,
              class_name: 'User',
              foreign_key: 'developer_id'
+
 end

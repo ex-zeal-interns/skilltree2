@@ -13,18 +13,18 @@ class User < ApplicationRecord
   validates :time_zone, presence: true
 
   has_many :mentor_ratings,
-           class_name: 'rating',
-           foreign_key: 'mentor_ratings_id'
+           class_name: 'Rating',
+           foreign_key: 'mentor_id'
 
   has_many :developer_ratings,
-           class_name: 'rating',
-           foreign_key: 'developer_ratings_id'
+           class_name: 'Rating',
+           foreign_key: 'developer_id'
 
   has_many :mentor_relationships,
-           class_name: 'relationship',
+           class_name: 'Relationship',
            foreign_key: 'mentor_relationships_id'
 
   has_many :developer_relationships,
-           class_name: 'relationship',
+           class_name: 'Relationship',
            foreign_key: 'developer_relationships_id'
 end

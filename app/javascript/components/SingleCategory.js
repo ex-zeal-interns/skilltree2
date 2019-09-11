@@ -12,7 +12,7 @@ function SingleCategory({ rating, myMentorRatings }) {
       <div className="mentorRatings">
         {myMentorRating.map(r => {
           return (
-            <div key={r.timestamp} className="singleMentorCategory">
+            <div className="singleMentorCategory" key={r.timestamp}>
               <h2 id="mentor_score">{r.score}</h2>
               <div id="mentor_name">
                 <h2 className="first_name">{r.mentor.first_name} </h2>
