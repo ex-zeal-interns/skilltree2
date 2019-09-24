@@ -21,10 +21,10 @@ class User < ApplicationRecord
            foreign_key: 'developer_id'
 
   has_many :mentor_relationships,
-           class_name: 'relationship',
+           class_name: 'Relationship',
            foreign_key: 'mentor_relationships_id'
 
   has_many :developer_relationships,
-           class_name: 'relationship',
+           class_name: 'Relationship',
            foreign_key: 'developer_relationships_id'
 end

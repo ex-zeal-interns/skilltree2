@@ -7,6 +7,9 @@ function Header({ logged_in, sign_out_path, sign_in_path, current_user }) {
     <div className="white-header">
       <img alt="zeal logo" className="navLogo" id="zeal-img" src={Logo} />
       <div className="navLinks">
+        <a className="navBtn" href="/" id="mentorFind">
+          Find a Mentor
+        </a>
         <a
           className="navBtn"
           href={(logged_in && `/profile/${current_user.id}`) || sign_in_path}

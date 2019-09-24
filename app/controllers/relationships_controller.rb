@@ -26,12 +26,21 @@ class RelationshipsController < ApplicationController
     end
     render json: @mentors
   end
-  def mentors_ids
+
+  def pending_mentor_ids
     @mentors = []
     Relationship.find_each do |relationship|
       if relationship.developer_id == current_user.id && relationship.status == 1
         @mentors << relationship.mentor_id
-      elsif relationship.developer_id == current_user.id && relationship.status == 2
+      end
+    end
+    render json: @mentors
+  end
+
+  def mentors_ids
+    @mentors = []
+    Relationship.find_each do |relationship|
+      if relationship.developer_id == current_user.id && relationship.status == 2
         @mentors << relationship.mentor_id
       end
     end
@@ -59,12 +68,21 @@ class RelationshipsController < ApplicationController
     end
     render json: @mentors
   end
+
   def developers_ids
     @mentors = []
     Relationship.find_each do |relationship|
-      if relationship.mentor_id == current_user.id && relationship.status == 1
+      if relationship.mentor_id == current_user.id && relationship.status == 2
         @mentors << relationship.developer_id
-      elsif relationship.mentor_id == current_user.id && relationship.status == 2
+      end
+    end
+    render json: @mentors
+  end
+
+  def pending_developer_ids
+    @mentors = []
+    Relationship.find_each do |relationship|
+      if relationship.mentor_id == current_user.id && relationship.status == 1
         @mentors << relationship.developer_id
       end
     end
@@ -84,6 +102,4 @@ class RelationshipsController < ApplicationController
   def relationship_params
     params.require(:relationship).permit(:mentor_id, :developer_id, :status, :sender_id)
   end
-
-
 end

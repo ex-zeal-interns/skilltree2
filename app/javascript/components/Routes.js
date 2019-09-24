@@ -2,12 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ////pages
+import MentorList from "./MentorList";
 import Pendings from "./Pendings";
 import Profile from "./Profile";
 import RankMyself from "./RankMyself";
 import StaticProfile from "./StaticProfile";
 
-function Routes({ current_user, token }) {
+function Routes({ current_user, token, sign_in_path }) {
   return (
     <Router>
       <Route
@@ -36,6 +37,25 @@ function Routes({ current_user, token }) {
           <Pendings {...props} current_user={current_user} token={token} />
         )}
       />
+      {(current_user && (
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <MentorList {...props} current_user={current_user} />
+          )}
+        />
+      )) || (
+        <div className="home">
+          <h1>Please Sign In</h1>
+          <button>
+            <a href="/users/sign_in">Sign In</a>
+          </button>
+          <button>
+            <a href="/users/sign_up">Sign Up</a>
+          </button>
+        </div>
+      )}
     </Router>
   );
 }
