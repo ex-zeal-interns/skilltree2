@@ -1,6 +1,7 @@
 import React from "react";
 
 function SingleCategory({ rating, myMentorRatings }) {
+  console.log(myMentorRatings);
   const myMentorRating = myMentorRatings.filter(
     mentorRating => mentorRating.category_id === rating.category.id
   );

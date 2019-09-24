@@ -496,6 +496,15 @@ input:checked ~ .checkmark:after {
 .card-content {
   grid-area: card;
 }
+.flexbox {
+  display: flex;
+}
+.flexbox a {
+  opacity: 0;
+}
+.flexbox:hover a {
+  opacity: 1;
+}
 #fullname {
   margin-bottom: 10px;
   color: #333;

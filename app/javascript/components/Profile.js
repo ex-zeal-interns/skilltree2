@@ -1,11 +1,17 @@
 import React from "react";
-
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import {
+  faCoffee,
+  faCog,
+  faArrowLeft
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 ///// parts
 import AllCategories from "./AllCategories";
 import DevCard from "./DevCard";
 import MentorCard from "./MentorCard";
+
 ////// fetches
 import {
   createRelationship,
@@ -244,11 +250,16 @@ class Profile extends React.Component {
             )}
             <div className="card">
               <div className="card-content">
-                <h1 className="card-info" id="fullname">
-                  {user.first_name}
-                  <br />
-                  <br /> {user.last_name}
-                </h1>
+                <div className="flexbox">
+                  <h1 className="card-info" id="fullname">
+                    {user.first_name}
+                    <br />
+                    <br /> {user.last_name}
+                  </h1>
+                  <a className="back" href="/users/edit">
+                    <FontAwesomeIcon icon={faCog} color="grey" size="lg" />
+                  </a>
+                </div>
                 <h2 className="card-info" id="email">
                   <span aria-label="envelope" role="img">
                     ✉️
