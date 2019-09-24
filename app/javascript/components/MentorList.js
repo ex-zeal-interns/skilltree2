@@ -2,7 +2,12 @@ import React from "react";
 
 import Profilepic from "./pics/profilepic.jpeg";
 
-import { mentorList, allCategories, mentorIds, developerIds } from "./API/api";
+import {
+  mentorList,
+  allCategories,
+  myMentorIds,
+  myDeveloperIds
+} from "./API/api";
 
 class MentorList extends React.Component {
   constructor(props) {
@@ -38,12 +43,12 @@ class MentorList extends React.Component {
         allCategories: APIcategories
       });
     });
-    mentorIds().then(APImentorids => {
+    myMentorIds().then(APImentorids => {
       this.setState({
         mentorIds: APImentorids
       });
     });
-    developerIds().then(APIdeveloperids => {
+    myDeveloperIds().then(APIdeveloperids => {
       this.setState({
         developerIds: APIdeveloperids
       });

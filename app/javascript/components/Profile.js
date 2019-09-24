@@ -20,10 +20,10 @@ import {
   oneUser,
   myMentors,
   myDevelopers,
-  mentorIds,
-  developerIds,
-  pendingMentorIds,
-  pendingDeveloperIds
+  myMentorIds,
+  myDeveloperIds,
+  myPendingMentorIds,
+  myPendingDeveloperIds
 } from "./API/api";
 
 class Profile extends React.Component {
@@ -42,6 +42,7 @@ class Profile extends React.Component {
       developerIds: [],
       pending: false,
       staticProfile: false,
+      conditionals: true,
 
       request: {
         mentor_id: "",
@@ -56,6 +57,7 @@ class Profile extends React.Component {
 
   componentWillMount() {
     this.fetchData();
+    this.conditionCheck();
   }
 
   componentDidUpdate(prevProps) {
@@ -64,6 +66,38 @@ class Profile extends React.Component {
     if (match.params.id !== prevProps.match.params.id) {
       this.fetchData();
     }
+  }
+
+  conditionCheck() {
+    const {
+      user,
+      developerIds,
+      mentorIds,
+      pendingMentorIds,
+      pendingDeveloperIds
+    } = this.state;
+
+    // if (
+    //   !developerIds.includes(user.id) &&
+    //   !mentorIds.includes(user.id) &&
+    //   !pendingMentorIds.includes(user.id) &&
+    //   !pendingDeveloperIds.includes(user.id)
+    // ) {
+    //   this.setState({
+    //     conditional: true
+    //   });
+    // } else {
+    //   this.setState({
+    //     conditional: false
+    //   });
+    // }
+    this.setState({
+      conditionals:
+        !developerIds.includes(user.id) &&
+        !mentorIds.includes(user.id) &&
+        !pendingMentorIds.includes(user.id) &&
+        !pendingDeveloperIds.includes(user.id)
+    });
   }
 
   fetchData() {
@@ -96,22 +130,22 @@ class Profile extends React.Component {
         developers: APIdevelopers
       });
     });
-    mentorIds().then(APImentorids => {
+    myMentorIds().then(APImentorids => {
       this.setState({
         mentorIds: APImentorids
       });
     });
-    developerIds().then(APIdeveloperids => {
+    myDeveloperIds().then(APIdeveloperids => {
       this.setState({
         developerIds: APIdeveloperids
       });
     });
-    pendingMentorIds().then(APImentorids => {
+    myPendingMentorIds().then(APImentorids => {
       this.setState({
         pendingMentorIds: APImentorids
       });
     });
-    pendingDeveloperIds().then(APIdeveloperids => {
+    myPendingDeveloperIds().then(APIdeveloperids => {
       this.setState({
         pendingDeveloperIds: APIdeveloperids
       });
@@ -150,6 +184,7 @@ class Profile extends React.Component {
 
   render() {
     const {
+      conditionals,
       user,
       myRatings,
       myMentorRatings,
@@ -173,6 +208,7 @@ class Profile extends React.Component {
     const rankUrl = `/rankmyself/${user.id}`;
     const headerName = `${user.first_name}'s`;
     const staticLink = `${host}/staticProfile/${user.unique_url}`;
+    const mailTo = `mailto:${user.email}`;
 
     const myMentors = mentors.map((mentor, index) => {
       return (
@@ -204,6 +240,7 @@ class Profile extends React.Component {
     });
     const accessList = [...mentorList, ...developerList];
 
+    console.log(conditionals);
     return (
       <div className="profile">
         {(user.privacy_status === 1 &&
@@ -212,16 +249,14 @@ class Profile extends React.Component {
             <div className="private_page">
               <h1>{headerName} Account Is Private</h1>
               {current_user.id != user.id &&
-                !developerIds.includes(user.id) &&
-                !mentorIds.includes(user.id) &&
+                !conditionals &&
                 current_user.mentor_status == 1 && (
                   <button onClick={this.handleDevRequest}>
                     Be {headerName} Mentor
                   </button>
                 )}
               {current_user.id != user.id &&
-                !developerIds.includes(user.id) &&
-                !mentorIds.includes(user.id) &&
+                !conditionals &&
                 user.mentor_status == 1 && (
                   <button onClick={this.handleMentorRequest}>
                     Be {headerName} Mentee
@@ -257,14 +292,16 @@ class Profile extends React.Component {
                     <br /> {user.last_name}
                   </h1>
                   <a className="back" href="/users/edit">
-                    <FontAwesomeIcon icon={faCog} color="grey" size="lg" />
+                    {current_user.id === user.id && (
+                      <FontAwesomeIcon icon={faCog} color="grey" size="lg" />
+                    )}
                   </a>
                 </div>
                 <h2 className="card-info" id="email">
                   <span aria-label="envelope" role="img">
                     ✉️
                   </span>
-                  {user.email}
+                  <a href={mailTo}>{user.email}</a>
                 </h2>
                 <h2 className="card-info" id="timezone">
                   <span aria-label="globe" role="img">
@@ -295,16 +332,14 @@ class Profile extends React.Component {
                   </button>
                 )}
                 {current_user.id != user.id &&
-                  !developerIds.includes(user.id) &&
-                  !mentorIds.includes(user.id) &&
+                  !conditionals &&
                   current_user.mentor_status == 1 && (
                     <button onClick={this.handleDevRequest}>
                       Be {headerName} Mentor
                     </button>
                   )}
                 {current_user.id != user.id &&
-                  !developerIds.includes(user.id) &&
-                  !mentorIds.includes(user.id) &&
+                  !conditionals &&
                   user.mentor_status == 1 && (
                     <button onClick={this.handleMentorRequest}>
                       Be {headerName} Mentee
@@ -312,9 +347,15 @@ class Profile extends React.Component {
                   )}
               </div>
             </div>
-            {mentors.length > 0 && <h1>My Mentors</h1>}
+            {mentors.length > 0 &&
+              ((current_user.id === user.id && <h1>My Mentors</h1>) ||
+                (current_user.id != user.id && <h1>{headerName} Mentors</h1>))}
             {myMentors}
-            {developers.length > 0 && <h1>My Developers</h1>}
+            {developers.length > 0 &&
+              ((current_user.id === user.id && <h1>My Developers</h1>) ||
+                (current_user.id != user.id && (
+                  <h1>{headerName} Developers</h1>
+                )))}
             {myDevelopers}
           </div>
         )}

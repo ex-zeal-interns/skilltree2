@@ -61,6 +61,13 @@
 .form #email label {
   font-weight: bold;
 }
+#email a {
+  text-decoration: none;
+  color: #adadad;
+}
+#email a:hover {
+  color: black;
+}
 .form #email input {
   width: 90%;
   height: 40px;
@@ -531,9 +538,13 @@ input:checked ~ .checkmark:after {
 }
 .singleCategory {
   display: grid;
-  grid-template-columns: 80px auto;
+  grid-template-columns: 10px 80px auto;
   grid-template-rows: auto;
-  grid-template-areas: "score category_name";
+  grid-template-areas: "arrow score category_name";
+}
+#arrow {
+  grid-area: arrow;
+  margin-top: 20px;
 }
 #score {
   grid-area: score;

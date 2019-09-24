@@ -74,22 +74,22 @@ export const pendingDevelopers = () => {
     return resp.json();
   });
 };
-export const mentorIds = () => {
+export const myMentorIds = () => {
   return fetch(`/mentorids`).then(resp => {
     return resp.json();
   });
 };
-export const developerIds = () => {
+export const myDeveloperIds = () => {
   return fetch(`/developerids`).then(resp => {
     return resp.json();
   });
 };
-export const pendingMentorIds = () => {
+export const myPendingMentorIds = () => {
   return fetch(`/pendingmentorids`).then(resp => {
     return resp.json();
   });
 };
-export const pendingDeveloperIds = () => {
+export const myPendingDeveloperIds = () => {
   return fetch(`/pendingdeveloperids`).then(resp => {
     return resp.json();
   });
