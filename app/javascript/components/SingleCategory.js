@@ -8,7 +8,7 @@ class SingleCategory extends React.Component {
     this.state = {
       dropdown: false
     };
-    this.dropClick = this.dropClick.bind(this);
+    this.handleDropClick = this.handleDropClick.bind(this);
   }
 
   handleDropClick() {

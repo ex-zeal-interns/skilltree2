@@ -27,10 +27,6 @@ import {
   myPendingDeveloperIds
 } from "./API/api";
 
-import DevCard from "./DevCard";
-import MentorCard from "./MentorCard";
-////// fetches
-
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -282,7 +278,7 @@ class Profile extends React.Component {
             )) || (
               <div className="header-area">
                 <h1 className="card-header">{headerName} Profile</h1>
-            
+
                 {developerIds.includes(user.id) && (
                   <Link className="rank-btn-link" to={rankUrl}>
                     <h4>RANK {upcaseName}</h4>
