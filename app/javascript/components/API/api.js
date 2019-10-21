@@ -17,6 +17,17 @@ export const myLastRating = id => {
     return resp.json();
   });
 };
+export const myLastMentorRating = id => {
+  return fetch(`/mycurrentmentorratings/${id}.json`).then(resp => {
+    return resp.json();
+  });
+};
+
+export const myLastMentorRating = id => {
+  return fetch(`/mycurrentmentorratings/${id}.json`).then(resp => {
+    return resp.json();
+  });
+};
 
 export const myLastMentorRating = id => {
   return fetch(`/mycurrentmentorratings/${id}.json`).then(resp => {
@@ -84,11 +95,13 @@ export const myDeveloperIds = () => {
     return resp.json();
   });
 };
+
 export const myPendingMentorIds = () => {
   return fetch(`/pendingmentorids`).then(resp => {
     return resp.json();
   });
 };
+
 export const myPendingDeveloperIds = () => {
   return fetch(`/pendingdeveloperids`).then(resp => {
     return resp.json();

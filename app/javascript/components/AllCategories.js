@@ -19,6 +19,7 @@ function AllCategories({
       />
     );
   });
+  
   const averageList = myRatings.map((rating, index) => {
     return (
       <AverageRating

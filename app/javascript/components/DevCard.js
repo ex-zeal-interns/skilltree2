@@ -29,6 +29,7 @@ class DevCard extends React.Component {
         <a href={userLink}>
           <img src={Profilepic} className="cardpicture" />
         </a>
+
         <div className="info">
           {(developer.developer.developer_status == 1 && <h5>MENTOR</h5>) || (
             <h5>DEVELOPER</h5>

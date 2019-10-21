@@ -9,6 +9,7 @@ import {
   myDeveloperIds
 } from "./API/api";
 
+
 class MentorList extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +44,7 @@ class MentorList extends React.Component {
         allCategories: APIcategories
       });
     });
+
     myMentorIds().then(APImentorids => {
       this.setState({
         mentorIds: APImentorids
@@ -59,6 +61,7 @@ class MentorList extends React.Component {
     this.setState(prevState => ({
       dropdown: !prevState.dropdown
     }));
+
   }
 
   filterByCategory(e) {
@@ -72,6 +75,7 @@ class MentorList extends React.Component {
         }).length > 0
       );
     });
+
     this.setState({
       filteredMentors: filtered,
       clicked: true,
@@ -100,6 +104,7 @@ class MentorList extends React.Component {
       mentorIds,
       developerIds
     } = this.state;
+    
     const filter = allCategories.map(category => {
       return (
         <a

@@ -13,6 +13,7 @@ import DevCard from "./DevCard";
 import MentorCard from "./MentorCard";
 
 ////// fetches
+
 import {
   createRelationship,
   myLastRating,
@@ -25,6 +26,10 @@ import {
   myPendingMentorIds,
   myPendingDeveloperIds
 } from "./API/api";
+
+import DevCard from "./DevCard";
+import MentorCard from "./MentorCard";
+////// fetches
 
 class Profile extends React.Component {
   constructor(props) {
@@ -119,6 +124,9 @@ class Profile extends React.Component {
       this.setState({
         myRatings: APIrating
       });
+    });
+    myLastMentorRating(id).then(APIrating => {
+      this.setState({ myMentorRatings: APIrating });
     });
     myMentors(id).then(APImentors => {
       this.setState({
@@ -240,7 +248,6 @@ class Profile extends React.Component {
     });
     const accessList = [...mentorList, ...developerList];
 
-    console.log(conditionals);
     return (
       <div className="profile">
         {(user.privacy_status === 1 &&
@@ -275,7 +282,7 @@ class Profile extends React.Component {
             )) || (
               <div className="header-area">
                 <h1 className="card-header">{headerName} Profile</h1>
-
+            
                 {developerIds.includes(user.id) && (
                   <Link className="rank-btn-link" to={rankUrl}>
                     <h4>RANK {upcaseName}</h4>
@@ -297,6 +304,7 @@ class Profile extends React.Component {
                     )}
                   </a>
                 </div>
+
                 <h2 className="card-info" id="email">
                   <span aria-label="envelope" role="img">
                     ✉️
