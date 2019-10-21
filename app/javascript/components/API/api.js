@@ -1,9 +1,11 @@
+/////users
 export const oneUser = id => {
   return fetch(`/user/${id}.json`).then(resp => {
     return resp.json();
   });
 };
 
+///ratings
 export const myRatings = id => {
   return fetch(`/myratings/${id}.json`).then(resp => {
     return resp.json();
@@ -15,6 +17,12 @@ export const myLastRating = id => {
     return resp.json();
   });
 };
+export const myLastMentorRating = id => {
+  return fetch(`/mycurrentmentorratings/${id}.json`).then(resp => {
+    return resp.json();
+  });
+};
+
 export const myLastMentorRating = id => {
   return fetch(`/mycurrentmentorratings/${id}.json`).then(resp => {
     return resp.json();
@@ -40,6 +48,13 @@ export const createRating = (rating, token) => {
   });
 };
 
+export const averageRating = (unique_url, id) => {
+  return fetch(`/averagerating/${unique_url}/${id}.json`).then(resp => {
+    return resp.json();
+  });
+};
+
+////categories
 export const allCategories = () => {
   return fetch(`/categories`).then(resp => {
     return resp.json();
@@ -70,22 +85,24 @@ export const pendingDevelopers = () => {
     return resp.json();
   });
 };
-export const mentorIds = () => {
+export const myMentorIds = () => {
   return fetch(`/mentorids`).then(resp => {
     return resp.json();
   });
 };
-export const developerIds = () => {
+export const myDeveloperIds = () => {
   return fetch(`/developerids`).then(resp => {
     return resp.json();
   });
 };
-export const pendingMentorIds = () => {
+
+export const myPendingMentorIds = () => {
   return fetch(`/pendingmentorids`).then(resp => {
     return resp.json();
   });
 };
-export const pendingDeveloperIds = () => {
+
+export const myPendingDeveloperIds = () => {
   return fetch(`/pendingdeveloperids`).then(resp => {
     return resp.json();
   });

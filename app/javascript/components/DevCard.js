@@ -22,10 +22,14 @@ class DevCard extends React.Component {
 
   render() {
     const { developer, pending, current_user } = this.props;
+    const userLink = `/profile/${developer.developer.id}`;
 
     return (
       <div className="pendingcard">
-        <img src={Profilepic} className="cardpicture" />
+        <a href={userLink}>
+          <img src={Profilepic} className="cardpicture" />
+        </a>
+
         <div className="info">
           {(developer.developer.developer_status == 1 && <h5>MENTOR</h5>) || (
             <h5>DEVELOPER</h5>

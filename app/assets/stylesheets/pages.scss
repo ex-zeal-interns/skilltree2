@@ -61,6 +61,13 @@
 .form #email label {
   font-weight: bold;
 }
+#email a {
+  text-decoration: none;
+  color: #adadad;
+}
+#email a:hover {
+  color: black;
+}
 .form #email input {
   width: 90%;
   height: 40px;
@@ -455,11 +462,15 @@ input:checked ~ .checkmark:after {
   box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.02),
     0 29px 21px -20px rgba(0, 0, 0, 0.14);
   display: grid;
-  grid-template-columns: 25% 55% 20%;
+  grid-template-columns: 25% 58% 17%;
   grid-template-rows: auto auto;
   grid-template-areas:
     "card categories buttons"
     "card categories .";
+}
+.profile h1 {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .profile .header-area {
   display: grid;
@@ -491,7 +502,15 @@ input:checked ~ .checkmark:after {
 
 .card-content {
   grid-area: card;
-  padding: 15px;
+}
+.flexbox {
+  display: flex;
+}
+.flexbox a {
+  opacity: 0;
+}
+.flexbox:hover a {
+  opacity: 1;
 }
 #fullname {
   margin-bottom: 10px;
@@ -506,6 +525,12 @@ input:checked ~ .checkmark:after {
   color: #ababab;
   font-size: 14px;
 }
+#url:hover {
+  color: black;
+}
+#urlLink {
+  text-decoration: none;
+}
 .categories {
   grid-area: categories;
   padding: 15px;
@@ -513,9 +538,13 @@ input:checked ~ .checkmark:after {
 }
 .singleCategory {
   display: grid;
-  grid-template-columns: 80px auto;
+  grid-template-columns: 10px 80px auto;
   grid-template-rows: auto;
-  grid-template-areas: "score category_name";
+  grid-template-areas: "arrow score category_name";
+}
+#arrow {
+  grid-area: arrow;
+  margin-top: 20px;
 }
 #score {
   grid-area: score;
@@ -869,3 +898,120 @@ input:checked ~ .checkmark:after {
   font-size: 25px;
   margin-left: 15px;
 }
+
+
+////mentor list
+
+.MentorList {
+}
+.colapsedTop {
+  display: flex;
+  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-right: 30px;
+}
+.MentorList .titleText {
+  font-size: 40px;
+  float: left;
+  width: 80%;
+}
+.MentorList .filterDiv {
+  padding: 29px 40px 20px;
+  overflow: scroll;
+  height: 250px;
+  border-style: none none solid;
+  border-width: 1px 1px 6px;
+  border-color: #dedede #dedede #ffb648;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.02),
+    0 29px 21px -20px rgba(0, 0, 0, 0.14);
+}
+.filterTop {
+  display: flex;
+  flex-direction: row;
+}
+.filterTop h1 {
+  float: left;
+  width: 80%;
+}
+.categoryLink {
+  padding-top: 15px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+.categoryLink:hover {
+  background-color: #ffb648;
+  color: white;
+}
+
+.MentorList .closeFilter {
+  border-radius: 50px;
+  border-style: none;
+  background-color: #ffb648;
+  color: white;
+  width: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 10px;
+  padding: 15px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 15px;
+  float: left;
+  width: 20%;
+}
+
+.MentorList .colapsedFilter {
+  border-radius: 50px;
+  border-style: none;
+  background-color: #ffb648;
+  color: white;
+  width: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 10px;
+  padding: 15px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 15px;
+  margin-left: 15px;
+  float: left;
+  width: 20%;
+}
+.MentorList h2 {
+  text-align: center;
+}
+.MentorList .allMentors {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+//////// home page not signed in
+
+.home {
+  text-align: center;
+}
+.home h1 {
+  font-size: 45px;
+}
+.home button {
+  border-radius: 50px;
+  border-style: none;
+  background-color: #ffb648;
+  color: white;
+  width: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 50px;
+  padding: 15px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 25px;
+  margin-left: 15px;
+}
+.home button a {
+  color: white;
+  text-decoration: none;
+}
+

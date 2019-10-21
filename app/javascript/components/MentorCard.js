@@ -21,40 +21,38 @@ class MentorCard extends React.Component {
 
   render() {
     const { mentor, pending, current_user } = this.props;
+    const userLink = `/profile/${mentor.mentor.id}`;
 
     return (
-      <div className="allcards">
-        <div className="usercards">
-          {" "}
-          <div className="pendingcard">
-            <img src={Profilepic} className="cardpicture" />
-            <div className="info">
-              {(mentor.mentor.mentor_status == 1 && <h5>MENTOR</h5>) || (
-                <h5>DEVELOPER</h5>
-              )}
-              <h2>
-                {mentor.mentor.first_name} {mentor.mentor.last_name}
-              </h2>
-              <span aria-label="envelope" role="img">
-                <p>✉️{mentor.mentor.email}</p>
-              </span>
-              <br />
-              <span aria-label="envelope" role="img">
-                <p>🌐{mentor.mentor.time_zone}</p>
-              </span>
-            </div>
-            {pending && current_user.id != mentor.sender_id && (
-              <div className="buttons">
-                <button onClick={this.handleAccept} className="accept">
-                  Accept
-                </button>
-                <button onClick={this.handleReject} className="reject">
-                  Reject
-                </button>
-              </div>
-            )}
-          </div>
+      <div className="pendingcard">
+        <a href={userLink}>
+          <img src={Profilepic} className="cardpicture" />
+        </a>
+        <div className="info">
+          {(mentor.mentor.mentor_status == 1 && <h5>MENTOR</h5>) || (
+            <h5>DEVELOPER</h5>
+          )}
+          <h2>
+            {mentor.mentor.first_name} {mentor.mentor.last_name}
+          </h2>
+          <span aria-label="envelope" role="img">
+            <p>✉️{mentor.mentor.email}</p>
+          </span>
+          <br />
+          <span aria-label="envelope" role="img">
+            <p>🌐{mentor.mentor.time_zone}</p>
+          </span>
         </div>
+        {pending && current_user.id != mentor.sender_id && (
+          <div className="buttons">
+            <button onClick={this.handleAccept} className="accept">
+              Accept
+            </button>
+            <button onClick={this.handleReject} className="reject">
+              Reject
+            </button>
+          </div>
+        )}
       </div>
     );
   }

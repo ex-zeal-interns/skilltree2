@@ -33,10 +33,14 @@ class RatingsController < ApplicationController
     last_ratings_in_each_category = []
     user
     Category.find_each do |category|
-      all_my_ratings = Rating.where('developer_id = ? and mentor_id != ? and category_id = ?',
-                                    user.id, user.id, category.id)
-                             .as_json(include: { mentor: {} })
-      all_my_ratings.length.positive? && last_ratings_in_each_category << all_my_ratings.last
+      User.find_each do |mentor|
+        if user.id != mentor.id
+          all_my_ratings = Rating.where('developer_id = ? and mentor_id = ? and category_id = ?',
+                                        user.id, mentor.id, category.id)
+                                 .as_json(include: { mentor: {} })
+          all_my_ratings.length.positive? && last_ratings_in_each_category << all_my_ratings.last
+        end
+      end
     end
     render json: last_ratings_in_each_category
   end
@@ -52,6 +56,29 @@ class RatingsController < ApplicationController
 
   def rating_params
     params.require(:rating).permit(:category_id, :developer_id, :mentor_id, :score)
+  end
+
+  def average_rating
+    user
+    @average = []
+    @category = []
+    result = 0
+    @category_id = Category.find(params[:id]).id
+
+    User.find_each do |mentor|
+      all_dev_ratings = Rating.where('developer_id = ? and mentor_id = ? and category_id = ?',
+                                    user.id, mentor.id, @category_id)
+      all_dev_ratings.length.positive? && @category << all_dev_ratings.last
+    end
+
+      @category.each do |score|
+        result = result+score.score
+        @average_score = result.to_f/@category.length
+      end
+      @average_score && @average << @average_score
+
+    render json: @average
+
   end
 
   private

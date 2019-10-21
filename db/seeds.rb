@@ -57,7 +57,7 @@ category5.category_name = 'C++'
 category5.save!
 
 rating = Rating.new
-rating.score = 3.5
+rating.score = 3
 rating.mentor_id = 1
 rating.developer_id = 1
 rating.category_id = 2

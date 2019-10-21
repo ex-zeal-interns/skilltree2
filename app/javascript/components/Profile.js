@@ -1,9 +1,19 @@
 import React from "react";
-
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import {
+  faCoffee,
+  faCog,
+  faArrowLeft
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 ///// parts
 import AllCategories from "./AllCategories";
+import DevCard from "./DevCard";
+import MentorCard from "./MentorCard";
+
+////// fetches
+
 import {
   createRelationship,
   myLastRating,
@@ -11,11 +21,12 @@ import {
   oneUser,
   myMentors,
   myDevelopers,
-  mentorIds,
-  developerIds,
-  pendingMentorIds,
-  pendingDeveloperIds
+  myMentorIds,
+  myDeveloperIds,
+  myPendingMentorIds,
+  myPendingDeveloperIds
 } from "./API/api";
+
 import DevCard from "./DevCard";
 import MentorCard from "./MentorCard";
 ////// fetches
@@ -35,6 +46,8 @@ class Profile extends React.Component {
       pendingDeveloperIds: [],
       developerIds: [],
       pending: false,
+      staticProfile: false,
+      conditionals: true,
 
       request: {
         mentor_id: "",
@@ -49,6 +62,7 @@ class Profile extends React.Component {
 
   componentWillMount() {
     this.fetchData();
+    this.conditionCheck();
   }
 
   componentDidUpdate(prevProps) {
@@ -57,6 +71,38 @@ class Profile extends React.Component {
     if (match.params.id !== prevProps.match.params.id) {
       this.fetchData();
     }
+  }
+
+  conditionCheck() {
+    const {
+      user,
+      developerIds,
+      mentorIds,
+      pendingMentorIds,
+      pendingDeveloperIds
+    } = this.state;
+
+    // if (
+    //   !developerIds.includes(user.id) &&
+    //   !mentorIds.includes(user.id) &&
+    //   !pendingMentorIds.includes(user.id) &&
+    //   !pendingDeveloperIds.includes(user.id)
+    // ) {
+    //   this.setState({
+    //     conditional: true
+    //   });
+    // } else {
+    //   this.setState({
+    //     conditional: false
+    //   });
+    // }
+    this.setState({
+      conditionals:
+        !developerIds.includes(user.id) &&
+        !mentorIds.includes(user.id) &&
+        !pendingMentorIds.includes(user.id) &&
+        !pendingDeveloperIds.includes(user.id)
+    });
   }
 
   fetchData() {
@@ -70,10 +116,14 @@ class Profile extends React.Component {
       });
     });
     myLastMentorRating(id).then(APIrating => {
-      this.setState({ myMentorRatings: APIrating });
+      this.setState({
+        myMentorRatings: APIrating
+      });
     });
     myLastRating(id).then(APIrating => {
-      this.setState({ myRatings: APIrating });
+      this.setState({
+        myRatings: APIrating
+      });
     });
     myLastMentorRating(id).then(APIrating => {
       this.setState({ myMentorRatings: APIrating });
@@ -88,22 +138,22 @@ class Profile extends React.Component {
         developers: APIdevelopers
       });
     });
-    mentorIds().then(APImentorids => {
+    myMentorIds().then(APImentorids => {
       this.setState({
         mentorIds: APImentorids
       });
     });
-    developerIds().then(APIdeveloperids => {
+    myDeveloperIds().then(APIdeveloperids => {
       this.setState({
         developerIds: APIdeveloperids
       });
     });
-    pendingMentorIds().then(APImentorids => {
+    myPendingMentorIds().then(APImentorids => {
       this.setState({
         pendingMentorIds: APImentorids
       });
     });
-    pendingDeveloperIds().then(APIdeveloperids => {
+    myPendingDeveloperIds().then(APIdeveloperids => {
       this.setState({
         pendingDeveloperIds: APIdeveloperids
       });
@@ -142,6 +192,7 @@ class Profile extends React.Component {
 
   render() {
     const {
+      conditionals,
       user,
       myRatings,
       myMentorRatings,
@@ -152,7 +203,8 @@ class Profile extends React.Component {
       developers,
       pending,
       developerIds,
-      mentorIds
+      mentorIds,
+      staticProfile
     } = this.state;
     const { current_user } = this.props;
     // coming from fetch of profile (find where(url = {url}))
@@ -163,6 +215,8 @@ class Profile extends React.Component {
     const myUrl = `${host}/staticprofile/`;
     const rankUrl = `/rankmyself/${user.id}`;
     const headerName = `${user.first_name}'s`;
+    const staticLink = `${host}/staticProfile/${user.unique_url}`;
+    const mailTo = `mailto:${user.email}`;
 
     const myMentors = mentors.map((mentor, index) => {
       return (
@@ -202,16 +256,14 @@ class Profile extends React.Component {
             <div className="private_page">
               <h1>{headerName} Account Is Private</h1>
               {current_user.id != user.id &&
-                !developerIds.includes(user.id) &&
-                !mentorIds.includes(user.id) &&
+                !conditionals &&
                 current_user.mentor_status == 1 && (
                   <button onClick={this.handleDevRequest}>
                     Be {headerName} Mentor
                   </button>
                 )}
               {current_user.id != user.id &&
-                !developerIds.includes(user.id) &&
-                !mentorIds.includes(user.id) &&
+                !conditionals &&
                 user.mentor_status == 1 && (
                   <button onClick={this.handleMentorRequest}>
                     Be {headerName} Mentee
@@ -230,23 +282,34 @@ class Profile extends React.Component {
             )) || (
               <div className="header-area">
                 <h1 className="card-header">{headerName} Profile</h1>
-                <Link className="rank-btn-link" to={rankUrl}>
-                  <h4>RANK {upcaseName}</h4>
-                </Link>
+            
+                {developerIds.includes(user.id) && (
+                  <Link className="rank-btn-link" to={rankUrl}>
+                    <h4>RANK {upcaseName}</h4>
+                  </Link>
+                )}
               </div>
             )}
             <div className="card">
               <div className="card-content">
-                <h1 className="card-info" id="fullname">
-                  {user.first_name}
-                  <br />
-                  <br /> {user.last_name}
-                </h1>
+                <div className="flexbox">
+                  <h1 className="card-info" id="fullname">
+                    {user.first_name}
+                    <br />
+                    <br /> {user.last_name}
+                  </h1>
+                  <a className="back" href="/users/edit">
+                    {current_user.id === user.id && (
+                      <FontAwesomeIcon icon={faCog} color="grey" size="lg" />
+                    )}
+                  </a>
+                </div>
+
                 <h2 className="card-info" id="email">
                   <span aria-label="envelope" role="img">
                     ✉️
                   </span>
-                  {user.email}
+                  <a href={mailTo}>{user.email}</a>
                 </h2>
                 <h2 className="card-info" id="timezone">
                   <span aria-label="globe" role="img">
@@ -254,16 +317,19 @@ class Profile extends React.Component {
                   </span>
                   {user.time_zone}
                 </h2>
-                <h2 className="card-info" id="url">
-                  {myUrl}
-                  <br />
-                  {user.unique_url}
-                </h2>
+                <a href={staticLink} id="urlLink">
+                  <h2 className="card-info" id="url">
+                    {myUrl}
+                    <br />
+                    {user.unique_url}
+                  </h2>
+                </a>
               </div>
               <div className="categories">
                 <AllCategories
                   myRatings={myRatings}
                   myMentorRatings={myMentorRatings}
+                  staticProfile={staticProfile}
                 />
               </div>
 
@@ -274,16 +340,14 @@ class Profile extends React.Component {
                   </button>
                 )}
                 {current_user.id != user.id &&
-                  !developerIds.includes(user.id) &&
-                  !mentorIds.includes(user.id) &&
+                  !conditionals &&
                   current_user.mentor_status == 1 && (
                     <button onClick={this.handleDevRequest}>
                       Be {headerName} Mentor
                     </button>
                   )}
                 {current_user.id != user.id &&
-                  !developerIds.includes(user.id) &&
-                  !mentorIds.includes(user.id) &&
+                  !conditionals &&
                   user.mentor_status == 1 && (
                     <button onClick={this.handleMentorRequest}>
                       Be {headerName} Mentee
@@ -291,9 +355,15 @@ class Profile extends React.Component {
                   )}
               </div>
             </div>
-            {mentors.length > 0 && <h1>My Mentors</h1>}
+            {mentors.length > 0 &&
+              ((current_user.id === user.id && <h1>My Mentors</h1>) ||
+                (current_user.id != user.id && <h1>{headerName} Mentors</h1>))}
             {myMentors}
-            {developers.length > 0 && <h1>My Developers</h1>}
+            {developers.length > 0 &&
+              ((current_user.id === user.id && <h1>My Developers</h1>) ||
+                (current_user.id != user.id && (
+                  <h1>{headerName} Developers</h1>
+                )))}
             {myDevelopers}
           </div>
         )}

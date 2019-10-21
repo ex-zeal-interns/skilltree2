@@ -4,6 +4,6 @@
 class CategoriesController < ApplicationController
   def index
     @categories = Category.all
-    render json: @categories
+    render json: @categories.sort_by { |hsh| hsh[:category_name] }
   end
 end

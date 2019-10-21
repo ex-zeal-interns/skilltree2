@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'myratings/:user_id' => 'ratings#my_ratings'
     get 'mycurrentratings/:params' => 'ratings#my_last_rating'
     get 'mycurrentmentorratings/:params' => 'ratings#my_last_mentor_rating'
+    get 'averagerating/:params/:id' => 'ratings#average_rating'
 
   resources :relationships
     get 'pendingmentors' => 'relationships#pending_mentors'
